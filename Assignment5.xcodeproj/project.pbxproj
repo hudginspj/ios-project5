@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		7C35F3691EA32EEB007C6306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F3681EA32EEB007C6306 /* AppDelegate.swift */; };
-		7C35F36B1EA32EEB007C6306 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F36A1EA32EEB007C6306 /* ViewController.swift */; };
 		7C35F36E1EA32EEB007C6306 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C35F36C1EA32EEB007C6306 /* Main.storyboard */; };
 		7C35F3701EA32EEB007C6306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C35F36F1EA32EEB007C6306 /* Assets.xcassets */; };
 		7C35F3731EA32EEB007C6306 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C35F3711EA32EEB007C6306 /* LaunchScreen.storyboard */; };
 		7C35F37B1EA32F33007C6306 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F37A1EA32F33007C6306 /* JsonLoader.swift */; };
+		D0797C4D1EB691BC004305AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0797C4C1EB691BC004305AF /* ViewController.swift */; };
+		D0797C4F1EB69444004305AF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0797C4E1EB69444004305AF /* QuizViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7C35F3651EA32EEB007C6306 /* Assignment5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C35F3681EA32EEB007C6306 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7C35F36A1EA32EEB007C6306 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7C35F36D1EA32EEB007C6306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7C35F36F1EA32EEB007C6306 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C35F3721EA32EEB007C6306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C35F3741EA32EEB007C6306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C35F37A1EA32F33007C6306 /* JsonLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
+		D0797C4C1EB691BC004305AF /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D0797C4E1EB69444004305AF /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +58,14 @@
 		7C35F3671EA32EEB007C6306 /* Assignment5 */ = {
 			isa = PBXGroup;
 			children = (
+				D0797C4C1EB691BC004305AF /* ViewController.swift */,
 				7C35F3681EA32EEB007C6306 /* AppDelegate.swift */,
-				7C35F36A1EA32EEB007C6306 /* ViewController.swift */,
 				7C35F36C1EA32EEB007C6306 /* Main.storyboard */,
 				7C35F36F1EA32EEB007C6306 /* Assets.xcassets */,
 				7C35F3711EA32EEB007C6306 /* LaunchScreen.storyboard */,
 				7C35F3741EA32EEB007C6306 /* Info.plist */,
 				7C35F37A1EA32F33007C6306 /* JsonLoader.swift */,
+				D0797C4E1EB69444004305AF /* QuizViewController.swift */,
 			);
 			path = Assignment5;
 			sourceTree = "<group>";
@@ -138,9 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C35F36B1EA32EEB007C6306 /* ViewController.swift in Sources */,
+				D0797C4D1EB691BC004305AF /* ViewController.swift in Sources */,
 				7C35F37B1EA32F33007C6306 /* JsonLoader.swift in Sources */,
 				7C35F3691EA32EEB007C6306 /* AppDelegate.swift in Sources */,
+				D0797C4F1EB69444004305AF /* QuizViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
