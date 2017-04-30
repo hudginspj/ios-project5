@@ -15,6 +15,12 @@
 		7C35F37E1EA33432007C6306 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F37D1EA33432007C6306 /* Question.swift */; };
 		7C35F3811EB69CEB007C6306 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F37F1EB69CEB007C6306 /* QuizViewController.swift */; };
 		7C35F3821EB69CEB007C6306 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F3801EB69CEB007C6306 /* ViewController.swift */; };
+		D0797C571EB6A876004305AF /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C511EB6A876004305AF /* blue.png */; };
+		D0797C581EB6A876004305AF /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C521EB6A876004305AF /* green.png */; };
+		D0797C591EB6A876004305AF /* multi.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C531EB6A876004305AF /* multi.png */; };
+		D0797C5A1EB6A876004305AF /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C541EB6A876004305AF /* red.png */; };
+		D0797C5B1EB6A876004305AF /* single.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C551EB6A876004305AF /* single.png */; };
+		D0797C5C1EB6A876004305AF /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C561EB6A876004305AF /* yellow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		7C35F37D1EA33432007C6306 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		7C35F37F1EB69CEB007C6306 /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		7C35F3801EB69CEB007C6306 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D0797C511EB6A876004305AF /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue.png; path = "image resources/blue.png"; sourceTree = "<group>"; };
+		D0797C521EB6A876004305AF /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = green.png; path = "image resources/green.png"; sourceTree = "<group>"; };
+		D0797C531EB6A876004305AF /* multi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = multi.png; path = "image resources/multi.png"; sourceTree = "<group>"; };
+		D0797C541EB6A876004305AF /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red.png; path = "image resources/red.png"; sourceTree = "<group>"; };
+		D0797C551EB6A876004305AF /* single.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = single.png; path = "image resources/single.png"; sourceTree = "<group>"; };
+		D0797C561EB6A876004305AF /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yellow.png; path = "image resources/yellow.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +72,7 @@
 		7C35F3671EA32EEB007C6306 /* Assignment5 */ = {
 			isa = PBXGroup;
 			children = (
+				D0797C501EB6A864004305AF /* images */,
 				7C35F37F1EB69CEB007C6306 /* QuizViewController.swift */,
 				7C35F3801EB69CEB007C6306 /* ViewController.swift */,
 				7C35F37C1EA33418007C6306 /* Model */,
@@ -79,6 +92,19 @@
 				7C35F37D1EA33432007C6306 /* Question.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		D0797C501EB6A864004305AF /* images */ = {
+			isa = PBXGroup;
+			children = (
+				D0797C511EB6A876004305AF /* blue.png */,
+				D0797C521EB6A876004305AF /* green.png */,
+				D0797C531EB6A876004305AF /* multi.png */,
+				D0797C541EB6A876004305AF /* red.png */,
+				D0797C551EB6A876004305AF /* single.png */,
+				D0797C561EB6A876004305AF /* yellow.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,8 +166,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C35F3731EA32EEB007C6306 /* LaunchScreen.storyboard in Resources */,
+				D0797C5C1EB6A876004305AF /* yellow.png in Resources */,
 				7C35F3701EA32EEB007C6306 /* Assets.xcassets in Resources */,
+				D0797C581EB6A876004305AF /* green.png in Resources */,
 				7C35F36E1EA32EEB007C6306 /* Main.storyboard in Resources */,
+				D0797C5A1EB6A876004305AF /* red.png in Resources */,
+				D0797C571EB6A876004305AF /* blue.png in Resources */,
+				D0797C591EB6A876004305AF /* multi.png in Resources */,
+				D0797C5B1EB6A876004305AF /* single.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
