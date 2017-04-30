@@ -30,14 +30,9 @@ class JsonLoader {
                     let json = try NSJSONSerialization.JSONObjectWithData(result, options: .AllowFragments)
 
                     
-                    if let topic = json["topic"] as? String {
-                        print(topic)
-                    }
-                    
                     if let lst = json["questions"] as? NSArray {
                         for questionJson in lst {
-                            print(questionJson["correctOption"])
-                            
+                            //print(questionJson["correctOption"])
                             
                             if let sent = questionJson["questionSentence"] as? String,
                                 let a = questionJson["options"]!!["A"] as? String,
