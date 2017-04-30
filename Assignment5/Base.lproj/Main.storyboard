@@ -42,6 +42,9 @@
                                 <rect key="frame" x="187" y="318" width="132" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Multi Player"/>
+                                <connections>
+                                    <action selector="ChooseMulti:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4h5-k1-zVU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shZ-l1-9FS">
                                 <rect key="frame" x="67" y="380" width="240" height="48"/>
@@ -55,15 +58,19 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="mIR-bv-gle"/>
+                    <connections>
+                        <outlet property="MultiplayerImage" destination="Brp-6r-n5B" id="grg-Ff-t2Q"/>
+                        <outlet property="SinglePlayerImage" destination="7gQ-FG-f7s" id="NFa-gs-SKw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="964" y="35.532233883058474"/>
         </scene>
-        <!--View Controller-->
+        <!--Quiz View Controller-->
         <scene sceneID="Kwp-FF-8Te">
             <objects>
-                <viewController id="dAN-Q5-wiB" sceneMemberID="viewController">
+                <viewController id="dAN-Q5-wiB" customClass="QuizViewController" customModule="Assignment5" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VfJ-B4-q8D"/>
                         <viewControllerLayoutGuide type="bottom" id="9Zf-ZB-fdk"/>
@@ -162,21 +169,33 @@
                                 <rect key="frame" x="104" y="426" width="83.5" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="A: "/>
+                                <connections>
+                                    <action selector="AnswerA:" destination="dAN-Q5-wiB" eventType="touchUpInside" id="bJg-Ty-SmT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uD-cE-tE7">
                                 <rect key="frame" x="187" y="426" width="83.5" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="B: "/>
+                                <connections>
+                                    <action selector="AnswerB:" destination="dAN-Q5-wiB" eventType="touchUpInside" id="b9Q-iM-uka"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uE-2L-WaK">
                                 <rect key="frame" x="104" y="464" width="83.5" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="C: "/>
+                                <connections>
+                                    <action selector="AnswerC:" destination="dAN-Q5-wiB" eventType="touchUpInside" id="EJY-Ko-DPk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SF4-x6-maq">
                                 <rect key="frame" x="187" y="464" width="83.5" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="D: "/>
+                                <connections>
+                                    <action selector="AnswerD:" destination="dAN-Q5-wiB" eventType="touchUpInside" id="dsA-wg-fl8"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjK-kt-DeV">
                                 <rect key="frame" x="129" y="539" width="117" height="37"/>
@@ -189,10 +208,30 @@
                                 <rect key="frame" x="123" y="617" width="129" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Reset Quiz"/>
+                                <connections>
+                                    <action selector="ResetQuiz:" destination="dAN-Q5-wiB" eventType="touchUpInside" id="Trs-hp-1nF"/>
+                                </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="P1Answer" destination="58T-gH-uL8" id="LsM-MH-17Z"/>
+                        <outlet property="P1Score" destination="yw7-BU-M2H" id="9VG-t8-SCD"/>
+                        <outlet property="P2Answer" destination="Az9-rj-I7z" id="VHq-Dn-Lhu"/>
+                        <outlet property="P2Score" destination="gT9-7a-2Jd" id="9gL-Mk-dED"/>
+                        <outlet property="P3Answer" destination="0AE-ZC-gru" id="fNO-nm-eic"/>
+                        <outlet property="P3Score" destination="80P-qz-b6s" id="xpX-6i-1ny"/>
+                        <outlet property="P4Answer" destination="UfZ-aM-6KJ" id="Bxi-dv-ZJn"/>
+                        <outlet property="P4Score" destination="ELW-QI-0eg" id="JuK-2J-tNc"/>
+                        <outlet property="QuestionLabel" destination="2j1-5E-3RS" id="Mfw-qh-nbY"/>
+                        <outlet property="QuestionNumberLabel" destination="uqE-yF-Fpe" id="xvg-O5-eUP"/>
+                        <outlet property="TextA" destination="lOf-8t-xQ8" id="GPC-yB-xTO"/>
+                        <outlet property="TextB" destination="9uD-cE-tE7" id="6qt-LE-vxU"/>
+                        <outlet property="TextC" destination="5uE-2L-WaK" id="Uk3-ft-DvR"/>
+                        <outlet property="TextD" destination="SF4-x6-maq" id="f9h-yj-dfa"/>
+                        <outlet property="TimerLabel" destination="fjK-kt-DeV" id="sg7-w3-xac"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y2O-Yr-aVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
