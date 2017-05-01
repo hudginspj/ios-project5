@@ -35,6 +35,7 @@ class JsonLoader {
                             //print(questionJson["correctOption"])
                             
                             if let sent = questionJson["questionSentence"] as? String,
+                                let n = questionJson["number"] as? Int,
                                 let a = questionJson["options"]!!["A"] as? String,
                                 let b = questionJson["options"]!!["B"] as? String,
                                 let c = questionJson["options"]!!["C"] as? String,
@@ -43,13 +44,14 @@ class JsonLoader {
                                {
                                 let question = Question()
                                 question.sentence = sent
+                                question.number = n
                                 question.A = a
                                 question.B = b
                                 question.C = c
                                 question.D = d
                                 question.answer = ans
                                 questions.append(question)
-                                //print("A: \(question.A)")
+                                print("Reading Json, A: \(question.A)")
                             } else { print("bad JSON 2")}
                             
                         }

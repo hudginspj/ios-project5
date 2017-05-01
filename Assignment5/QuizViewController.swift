@@ -38,16 +38,20 @@ class QuizViewController: UIViewController {
     
     //Quiz Answer choices
     @IBAction func AnswerA(sender: AnyObject) {
-        defaults.setValue("A", forKeyPath: "answer")
+        //defaults.setValue("A", forKeyPath: "answer")
+        click("A")
     }
     @IBAction func AnswerB(sender: AnyObject) {
-        defaults.setValue("B", forKeyPath: "answer")
+        //defaults.setValue("B", forKeyPath: "answer")
+        click("B")
     }
     @IBAction func AnswerC(sender: AnyObject) {
-        defaults.setValue("C", forKeyPath: "answer")
+        //defaults.setValue("C", forKeyPath: "answer")
+        click("C")
     }
     @IBAction func AnswerD(sender: AnyObject) {
-        defaults.setValue("D", forKeyPath: "answer")
+        //defaults.setValue("D", forKeyPath: "answer")
+        click("D")
     }
     
     //Other Stuff
@@ -143,16 +147,14 @@ class QuizViewController: UIViewController {
     
     func updateTimer() {
         time=time-1
-        if(time>=0){
+        if(time>0){
             updateLabel(TimerLabel, text: String(time))
-        }else if(time >= -3){
+        }else if(time == 0) {
             updateLabel(TimerLabel, text: "Times Up")
-            //Check for correct answer
-            
-            //Show correct answer here
+            submit()
             
             
-        }else{
+        }else if (time < -3){
             time=25
             updateLabel(TimerLabel, text: String(time))
             if(questionNumber<questionTotal){
@@ -195,6 +197,23 @@ class QuizViewController: UIViewController {
     
     ///////////Selecting questions
     
+    func submit() {
+        let q = model.questions[questionNumber-1]
+        //TODO: fix scoring
+        //Check for correct answer
+        if (selectedAnswer == q.answer) {
+            score += 42 //TODO fix scoring
+        } else {
+            score -= 77
+            updateButtonText(getAnswerButton(selectedAnswer), text: "WRONG!")
+        }
+        
+        //TODO: Highlight correct answer
+        higlightButton(getAnswerButton(q.answer))
+        
+    }
+    
+    
     func getAnswerButton(letter : String) -> UIButton {
         if (letter == "A") {
             return TextA
@@ -207,8 +226,29 @@ class QuizViewController: UIViewController {
         }
     }
     
+    func click(buttonLetter : String) {
+        if (buttonLetter == selectedAnswer) {
+            submit()
+        } else {
+            selectedAnswer = buttonLetter
+            higlightButton(getAnswerButton(buttonLetter))
+        }
+    }
+    
+    
     func higlightButton(but : UIButton) {
+        //TODO actually highlight button instead
         but.titleLabel?.text = "<" + but.titleLabel!.text! + ">"
     }
+    
+    
+    ///////////Core Motion
+    
+    
+    
+    
+    
+    
+    
 }
 
