@@ -43,6 +43,14 @@ class ViewController: UIViewController {
     func populateQuestionList(quests: [Question]) {
         
     }
+    
+    /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "basic" {
+            if let cvc = segue.destinationViewController as? CategoryViewController {
+                cvc.model = model
+            }
+        }
+    }*/
 
 
 }

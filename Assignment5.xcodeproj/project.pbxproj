@@ -15,6 +15,7 @@
 		7C35F37E1EA33432007C6306 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F37D1EA33432007C6306 /* Question.swift */; };
 		7C35F3811EB69CEB007C6306 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F37F1EB69CEB007C6306 /* QuizViewController.swift */; };
 		7C35F3821EB69CEB007C6306 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F3801EB69CEB007C6306 /* ViewController.swift */; };
+		7C35F3841EB6B1D6007C6306 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F3831EB6B1D6007C6306 /* Model.swift */; };
 		D0797C571EB6A876004305AF /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C511EB6A876004305AF /* blue.png */; };
 		D0797C581EB6A876004305AF /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C521EB6A876004305AF /* green.png */; };
 		D0797C591EB6A876004305AF /* multi.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C531EB6A876004305AF /* multi.png */; };
@@ -34,6 +35,7 @@
 		7C35F37D1EA33432007C6306 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		7C35F37F1EB69CEB007C6306 /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		7C35F3801EB69CEB007C6306 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7C35F3831EB6B1D6007C6306 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		D0797C511EB6A876004305AF /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue.png; path = "image resources/blue.png"; sourceTree = "<group>"; };
 		D0797C521EB6A876004305AF /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = green.png; path = "image resources/green.png"; sourceTree = "<group>"; };
 		D0797C531EB6A876004305AF /* multi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = multi.png; path = "image resources/multi.png"; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				7C35F37D1EA33432007C6306 /* Question.swift */,
+				7C35F3831EB6B1D6007C6306 /* Model.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				7C35F3821EB69CEB007C6306 /* ViewController.swift in Sources */,
 				7C35F37E1EA33432007C6306 /* Question.swift in Sources */,
 				7C35F37B1EA32F33007C6306 /* JsonLoader.swift in Sources */,
+				7C35F3841EB6B1D6007C6306 /* Model.swift in Sources */,
 				7C35F3691EA32EEB007C6306 /* AppDelegate.swift in Sources */,
 				7C35F3811EB69CEB007C6306 /* QuizViewController.swift in Sources */,
 			);
