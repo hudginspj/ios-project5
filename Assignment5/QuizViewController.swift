@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMotion
 
 class QuizViewController: UIViewController {
     
@@ -142,6 +143,9 @@ class QuizViewController: UIViewController {
         
         //Set Timer
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(QuizViewController.updateTimer), userInfo: nil, repeats: true)
+        /*Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(updateDeviceMotion), userInfo: nil, repeats: true)
+        self.motion  motionManager.deviceMotionUpdateInterval = 1.0/60.0
+        self.motionManager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)*/
         
     }
     
@@ -244,7 +248,24 @@ class QuizViewController: UIViewController {
     
     ///////////Core Motion
     
-    
+    /*func updateDeviceMotion(){
+        
+        if let data = self.motionManager.deviceMotion {
+            
+            // orientation of body relat    ive to a reference frame
+            let attitude = data.attitude
+            
+            let userAcceleration = data.userAcceleration
+            
+            let gravity = data.gravity
+            let rotation = data.rotationRate
+            
+            //print("pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+            
+            updateBallWithRoll(CGFloat(attitude.roll), pitch: CGFloat(attitude.pitch), yaw: CGFloat(attitude.yaw), accX: CGFloat(userAcceleration.x), accY: CGFloat(userAcceleration.y), accZ: CGFloat(userAcceleration.z))
+        }
+        
+    }*/
     
     
     
