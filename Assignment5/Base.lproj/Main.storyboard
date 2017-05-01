@@ -136,14 +136,14 @@
                                 <rect key="frame" x="104" y="426" width="84" height="30"/>
                                 <state key="normal" title="A: "/>
                                 <connections>
-                                    <action selector="AnswerA:" destination="dAN-Q5-wiB" eventType="touchUpInside" id="bJg-Ty-SmT"/>
+                                    <action selector="AnswerA:" destination="dAN-Q5-wiB" eventType="touchUpInside" id="UTz-gn-R7S"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uD-cE-tE7">
                                 <rect key="frame" x="187" y="426" width="84" height="30"/>
                                 <state key="normal" title="B: "/>
                                 <connections>
-                                    <action selector="AnswerB:" destination="dAN-Q5-wiB" eventType="touchUpInside" id="b9Q-iM-uka"/>
+                                    <action selector="AnswerB:" destination="dAN-Q5-wiB" eventType="touchUpInside" id="yvs-3U-KvG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uE-2L-WaK">
