@@ -14,4 +14,6 @@ class Model {
     func setQuestions(quests: [Question]){
         self.questions = quests
     }
+    
+    
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class QuizViewController: UIViewController {
     
+    
     //Set user defaults
     let defaults = NSUserDefaults.standardUserDefaults()
     
@@ -101,6 +102,9 @@ class QuizViewController: UIViewController {
     var P2ScoreNumber=0
     var P3ScoreNumber=0
     var P4ScoreNumber=0
+    
+    var model = Model()
+    var selectedAnswer = "A"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,6 +124,7 @@ class QuizViewController: UIViewController {
         updateLabel(P4Score, text: String(P4ScoreNumber))
         
         //Set question counter
+       
         updateLabel(QuestionNumberLabel, text: "Question: "+String(questionNumber)+"/"+String(questionTotal))
         
         
@@ -127,8 +132,8 @@ class QuizViewController: UIViewController {
         ResetButton.alpha=0
         ResetButton.enabled=false
         
-        //TODO: Load Question 1
-        
+        //Load Question 1
+        loadQuestion(1)
         
         
         //Set Timer
@@ -155,6 +160,7 @@ class QuizViewController: UIViewController {
                 updateLabel(QuestionNumberLabel, text: "Question: "+String(questionNumber)+"/"+String(questionTotal))
                 
                 //Load next question here
+                loadQuestion(questionNumber)
                 
                 
             }else if(questionNumber==questionTotal){
@@ -177,6 +183,32 @@ class QuizViewController: UIViewController {
         button.titleLabel?.text=text
     }
     
+    func loadQuestion(questionNumber : Int) {
+        let q = model.questions[questionNumber-1]
+        QuestionLabel.text = q.sentence
+        updateButtonText(TextA, text: q.A)
+        updateButtonText(TextB, text: q.B)
+        updateButtonText(TextC, text: q.C)
+        updateButtonText(TextD, text: q.D)
+    }
     
+    
+    ///////////Selecting questions
+    
+    func getAnswerButton(letter : String) -> UIButton {
+        if (letter == "A") {
+            return TextA
+        } else if (letter == "B") {
+            return TextB
+        } else if (letter == "C") {
+            return TextC
+        } else {
+            return TextD
+        }
+    }
+    
+    func higlightButton(but : UIButton) {
+        but.titleLabel?.text = "<" + but.titleLabel!.text! + ">"
+    }
 }
 

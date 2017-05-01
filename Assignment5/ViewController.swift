@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var model = Model()
 
     //Main Screen Images (currently unused)
     @IBOutlet weak var Logo: UIImageView!
@@ -30,7 +32,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        JsonLoader.getJSONData(populateQuestionList)
+        JsonLoader.getJSONData(model.setQuestions)
 
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -40,17 +42,17 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func populateQuestionList(quests: [Question]) {
-        
-    }
-    
-    /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "basic" {
-            if let cvc = segue.destinationViewController as? CategoryViewController {
-                cvc.model = model
-            }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //if segue.identifier == "basic" {
+        //    if let cvc = segue.destinationViewController as? CategoryViewController {
+        //        cvc.model = model
+        //    }
+        //}
+        if let qvc = segue.destinationViewController as? QuizViewController {
+            qvc.model = model
         }
-    }*/
+    }
 
 
 }
