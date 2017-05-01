@@ -73,10 +73,10 @@ class QuizViewController: UIViewController {
         updateLabel(P2Answer, text: "")
         updateLabel(P3Answer, text: "")
         updateLabel(P4Answer, text: "")
-        updateLabel(P1Score, text: String(P1Score))
-        updateLabel(P2Score, text: String(P1Score))
-        updateLabel(P3Score, text: String(P1Score))
-        updateLabel(P4Score, text: String(P1Score))
+        updateLabel(P1Score, text: String(P1ScoreNumber))
+        updateLabel(P2Score, text: String(P2ScoreNumber))
+        updateLabel(P3Score, text: String(P3ScoreNumber))
+        updateLabel(P4Score, text: String(P4ScoreNumber))
         
         //Set question counter
         updateLabel(QuestionNumberLabel, text: "Question: "+String(questionNumber)+"/"+String(questionTotal))
@@ -137,7 +137,7 @@ class QuizViewController: UIViewController {
         
         
         //Set Timer
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(QuizViewController.updateTimer), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: #selector(QuizViewController.updateTimer), userInfo: nil, repeats: true)
         
     }
     
@@ -180,7 +180,7 @@ class QuizViewController: UIViewController {
         label.text=text
     }
     func updateButtonText(button: UIButton, text: String){
-        button.titleLabel?.text=text
+        button.setTitle(text, forState: .Normal)
     }
     
     func loadQuestion(questionNumber : Int) {
