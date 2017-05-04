@@ -7,13 +7,35 @@
 //
 
 import Foundation
+import MultipeerConnectivity
 
 class Model {
+    var session: MCSession!
+    
+    var messageCallback = {(msg: String) -> Void in print("default message callback")}
+    
     var questions : [Question] = []
+    
     
     func setQuestions(_ quests: [Question]){
         self.questions = quests
     }
     
+    
+    func sendMessage(msg : String) {
+        
+        let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: msg)
+        print("Peers: " + String(session.connectedPeers.count))
+        if (session.connectedPeers.count != 0) {
+            do{
+                try session.send(dataToSend, toPeers: session.connectedPeers, with: .unreliable)
+            }
+            catch let err {
+                print("Error in sending data \(err)")
+            }
+        }
+        //updateChatView(newText: msg!, id: peerID)
+        
+    }
     
 }

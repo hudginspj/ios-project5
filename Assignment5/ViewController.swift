@@ -13,7 +13,7 @@ import MultipeerConnectivity
 class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessionDelegate  {
     
     
-    var session: MCSession!
+    //var session: MCSession!
     var peerID: MCPeerID!
     
     var browser: MCBrowserViewController!
@@ -35,7 +35,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         //Change settings to single player mode
         setSingle()
         
-        sendMessage()
+        model.sendMessage(msg: "Ping")
     }
     func setSingle() {
         defaults.set(false, forKey: "multi")
@@ -81,13 +81,16 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         JsonLoader.getJSONData(model.setQuestions)
         
         self.peerID = MCPeerID(displayName: UIDevice.current.name + String(arc4random()%100))
-        self.session = MCSession(peer: peerID)
-        self.browser = MCBrowserViewController(serviceType: "chat", session: session)
-        self.assistant = MCAdvertiserAssistant(serviceType: "chat", discoveryInfo: nil, session: session)
+        model.session = MCSession(peer: peerID)
+        self.browser = MCBrowserViewController(serviceType: "chat", session: model.session)
+        self.assistant = MCAdvertiserAssistant(serviceType: "chat", discoveryInfo: nil, session: model.session)
         
         assistant.start()
-        session.delegate = self
+        model.session.delegate = self
         browser.delegate = self
+        model.messageCallback = {(msg : String) -> Void in
+            self.SingleButton.setTitle(msg, for: UIControlState())
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -111,22 +114,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     /// Peer to peer
     
     
-    func sendMessage() {
-        
-        let msg = "Ping"
-        let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: msg)
-        print("Peers: " + String(session.connectedPeers.count))
-        if (session.connectedPeers.count != 0) {
-            do{
-                try session.send(dataToSend, toPeers: session.connectedPeers, with: .unreliable)
-            }
-            catch let err {
-                print("Error in sending data \(err)")
-            }
-        }
-        //updateChatView(newText: msg!, id: peerID)
-        
-    }
+
     
     
     
@@ -159,7 +147,8 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
             
             if let receivedString = NSKeyedUnarchiver.unarchiveObject(with: data) as? String{
                 //self.updateChatView(newText: receivedString, id: peerID)
-                self.SingleButton.setTitle(receivedString, for: UIControlState())
+                //self.SingleButton.setTitle(receivedString, for: UIControlState())
+                self.model.messageCallback(receivedString)
             }
             
         })

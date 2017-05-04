@@ -48,6 +48,7 @@ class QuizViewController: UIViewController {
     //Quiz Answer choices
     @IBAction func AnswerA(_ sender: AnyObject) {
         //defaults.setValue("A", forKeyPath: "answer")
+        model.sendMessage(msg: "Ping \(time)")
         click("A")
         TextA.backgroundColor=UIColor.yellow
         TextA.layer.cornerRadius=10
@@ -216,6 +217,9 @@ class QuizViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        model.messageCallback = {(msg : String) -> Void in
+            self.TextB.setTitle(msg, for: UIControlState())
+        }
         
         //TODO: Find out how many players are connected
         if(numberOfPlayers<4){
