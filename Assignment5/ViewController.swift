@@ -27,6 +27,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     
     @IBOutlet weak var MultiButton: UIButton!
     @IBOutlet weak var SingleButton: UIButton!
+    @IBOutlet weak var StartButton: UIButton!
     //Set user defaults
     let defaults = UserDefaults.standard
     
