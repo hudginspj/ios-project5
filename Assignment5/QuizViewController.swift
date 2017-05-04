@@ -147,6 +147,9 @@ class QuizViewController: UIViewController {
         
         
         //TODO: Find out how many players are connected
+        P2Image.alpha=1
+        P3Image.alpha=1
+        P4Image.alpha=1
         if(numberOfPlayers<4){
             P4Image.alpha=0.4
         }
@@ -217,7 +220,15 @@ class QuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        TextA.titleLabel?.adjustsFontSizeToFitWidth = true
+        TextB.titleLabel?.adjustsFontSizeToFitWidth = true
+        TextC.titleLabel?.adjustsFontSizeToFitWidth = true
+        TextD.titleLabel?.adjustsFontSizeToFitWidth = true
+        
         //TODO: Find out how many players are connected
+        P2Image.alpha=1
+        P3Image.alpha=1
+        P4Image.alpha=1
         if(numberOfPlayers<4){
             P4Image.alpha=0.4
         }

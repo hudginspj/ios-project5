@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var MultiButton: UIButton!
     @IBOutlet weak var SingleButton: UIButton!
+    @IBOutlet weak var StartButton: UIButton!
     //Set user defaults
     let defaults = UserDefaults.standard
     
@@ -60,6 +61,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ChooseSingle(self)
+        SingleButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        MultiButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        StartButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
         
         JsonLoader.getJSONData(model.setQuestions)
