@@ -34,11 +34,11 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     
     @IBAction func ChooseSingle(_ sender: AnyObject) {
         //Change settings to single player mode
-        setSingle()
+        SetSingle()
         
         model.sendMessage(msg: "Ping")
     }
-    func setSingle() {
+    func SetSingle() {
         defaults.set(false, forKey: "multi")
         NSLog("Single")
         MultiButton.backgroundColor=UIColor.blue
@@ -76,7 +76,10 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSingle()
+        SetSingle()
+        SingleButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        MultiButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        StartButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
         
         JsonLoader.getJSONData(model.setQuestions)

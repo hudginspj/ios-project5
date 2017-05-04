@@ -48,7 +48,6 @@ class QuizViewController: UIViewController {
     //Quiz Answer choices
     @IBAction func AnswerA(_ sender: AnyObject) {
         //defaults.setValue("A", forKeyPath: "answer")
-        model.sendMessage(msg: "Ping \(time)")
         click("A")
         TextA.backgroundColor=UIColor.yellow
         TextA.layer.cornerRadius=10
