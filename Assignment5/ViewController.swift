@@ -20,41 +20,41 @@ class ViewController: UIViewController {
     @IBOutlet weak var MultiButton: UIButton!
     @IBOutlet weak var SingleButton: UIButton!
     //Set user defaults
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
     
-    @IBAction func ChooseSingle(sender: AnyObject) {
+    @IBAction func ChooseSingle(_ sender: AnyObject) {
         //Change settings to single player mode
-        defaults.setBool(false, forKey: "multi")
+        defaults.set(false, forKey: "multi")
         NSLog("Single")
-        MultiButton.backgroundColor=UIColor.blueColor()
+        MultiButton.backgroundColor=UIColor.blue
         MultiButton.layer.cornerRadius=13
         MultiButton.layer.borderWidth=2
-        MultiButton.layer.borderColor=UIColor.blueColor().CGColor
-        SingleButton.backgroundColor=UIColor.whiteColor()
+        MultiButton.layer.borderColor=UIColor.blue.cgColor
+        SingleButton.backgroundColor=UIColor.white
         SingleButton.layer.cornerRadius=13
         SingleButton.layer.borderWidth=2
-        SingleButton.layer.borderColor=UIColor.blueColor().CGColor
+        SingleButton.layer.borderColor=UIColor.blue.cgColor
     
-        MultiButton.titleLabel?.textColor=UIColor.whiteColor()
-        SingleButton.titleLabel?.textColor=UIColor.blueColor()
+        MultiButton.titleLabel?.textColor=UIColor.white
+        SingleButton.titleLabel?.textColor=UIColor.blue
     }
     
-    @IBAction func ChooseMulti(sender: AnyObject) {
+    @IBAction func ChooseMulti(_ sender: AnyObject) {
         //Change settings to multi player mode
-        defaults.setBool(true, forKey: "multi")
+        defaults.set(true, forKey: "multi")
         NSLog("Multi")
-        MultiButton.backgroundColor=UIColor.whiteColor()
+        MultiButton.backgroundColor=UIColor.white
         MultiButton.layer.cornerRadius=13
         MultiButton.layer.borderWidth=2
-        MultiButton.layer.borderColor=UIColor.blueColor().CGColor
-        SingleButton.backgroundColor=UIColor.blueColor()
+        MultiButton.layer.borderColor=UIColor.blue.cgColor
+        SingleButton.backgroundColor=UIColor.blue
         SingleButton.layer.cornerRadius=13
         SingleButton.layer.borderWidth=2
-        SingleButton.layer.borderColor=UIColor.blueColor().CGColor
+        SingleButton.layer.borderColor=UIColor.blue.cgColor
         
-        MultiButton.titleLabel?.textColor=UIColor.blueColor()
-        SingleButton.titleLabel?.textColor=UIColor.whiteColor()
+        MultiButton.titleLabel?.textColor=UIColor.blue
+        SingleButton.titleLabel?.textColor=UIColor.white
     }
     
     override func viewDidLoad() {
@@ -75,13 +75,13 @@ class ViewController: UIViewController {
     }
     
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //if segue.identifier == "basic" {
         //    if let cvc = segue.destinationViewController as? CategoryViewController {
         //        cvc.model = model
         //    }
         //}
-        if let qvc = segue.destinationViewController as? QuizViewController {
+        if let qvc = segue.destination as? QuizViewController {
             qvc.model = model
         }
     }

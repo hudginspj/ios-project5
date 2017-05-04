@@ -13,7 +13,7 @@ class QuizViewController: UIViewController {
     
     
     //Set user defaults
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
     //Player answer labels
     @IBOutlet weak var P1Answer: UILabel!
@@ -46,93 +46,93 @@ class QuizViewController: UIViewController {
     var numberOfPlayers=1
     
     //Quiz Answer choices
-    @IBAction func AnswerA(sender: AnyObject) {
+    @IBAction func AnswerA(_ sender: AnyObject) {
         //defaults.setValue("A", forKeyPath: "answer")
         click("A")
-        TextA.backgroundColor=UIColor.yellowColor()
+        TextA.backgroundColor=UIColor.yellow
         TextA.layer.cornerRadius=10
         TextA.layer.borderWidth=1
-        TextA.layer.borderColor=UIColor.yellowColor().CGColor
-        TextB.backgroundColor=UIColor.grayColor()
+        TextA.layer.borderColor=UIColor.yellow.cgColor
+        TextB.backgroundColor=UIColor.gray
         TextB.layer.cornerRadius=10
         TextB.layer.borderWidth=1
-        TextB.layer.borderColor=UIColor.grayColor().CGColor
-        TextC.backgroundColor=UIColor.grayColor()
+        TextB.layer.borderColor=UIColor.gray.cgColor
+        TextC.backgroundColor=UIColor.gray
         TextC.layer.cornerRadius=10
         TextC.layer.borderWidth=1
-        TextC.layer.borderColor=UIColor.grayColor().CGColor
-        TextD.backgroundColor=UIColor.grayColor()
+        TextC.layer.borderColor=UIColor.gray.cgColor
+        TextD.backgroundColor=UIColor.gray
         TextD.layer.cornerRadius=10
         TextD.layer.borderWidth=1
-        TextD.layer.borderColor=UIColor.grayColor().CGColor
+        TextD.layer.borderColor=UIColor.gray.cgColor
     }
-    @IBAction func AnswerB(sender: AnyObject) {
+    @IBAction func AnswerB(_ sender: AnyObject) {
         //defaults.setValue("B", forKeyPath: "answer")
         click("B")
-        TextA.backgroundColor=UIColor.grayColor()
+        TextA.backgroundColor=UIColor.gray
         TextA.layer.cornerRadius=10
         TextA.layer.borderWidth=1
-        TextA.layer.borderColor=UIColor.grayColor().CGColor
-        TextB.backgroundColor=UIColor.yellowColor()
+        TextA.layer.borderColor=UIColor.gray.cgColor
+        TextB.backgroundColor=UIColor.yellow
         TextB.layer.cornerRadius=10
         TextB.layer.borderWidth=1
-        TextB.layer.borderColor=UIColor.yellowColor().CGColor
-        TextC.backgroundColor=UIColor.grayColor()
+        TextB.layer.borderColor=UIColor.yellow.cgColor
+        TextC.backgroundColor=UIColor.gray
         TextC.layer.cornerRadius=10
         TextC.layer.borderWidth=1
-        TextC.layer.borderColor=UIColor.grayColor().CGColor
-        TextD.backgroundColor=UIColor.grayColor()
+        TextC.layer.borderColor=UIColor.gray.cgColor
+        TextD.backgroundColor=UIColor.gray
         TextD.layer.cornerRadius=10
         TextD.layer.borderWidth=1
-        TextD.layer.borderColor=UIColor.grayColor().CGColor
+        TextD.layer.borderColor=UIColor.gray.cgColor
     }
-    @IBAction func AnswerC(sender: AnyObject) {
+    @IBAction func AnswerC(_ sender: AnyObject) {
         //defaults.setValue("C", forKeyPath: "answer")
         click("C")
-        TextA.backgroundColor=UIColor.grayColor()
+        TextA.backgroundColor=UIColor.gray
         TextA.layer.cornerRadius=10
         TextA.layer.borderWidth=1
-        TextA.layer.borderColor=UIColor.grayColor().CGColor
-        TextB.backgroundColor=UIColor.grayColor()
+        TextA.layer.borderColor=UIColor.gray.cgColor
+        TextB.backgroundColor=UIColor.gray
         TextB.layer.cornerRadius=10
         TextB.layer.borderWidth=1
-        TextB.layer.borderColor=UIColor.grayColor().CGColor
-        TextC.backgroundColor=UIColor.yellowColor()
+        TextB.layer.borderColor=UIColor.gray.cgColor
+        TextC.backgroundColor=UIColor.yellow
         TextC.layer.cornerRadius=10
         TextC.layer.borderWidth=1
-        TextC.layer.borderColor=UIColor.yellowColor().CGColor
-        TextD.backgroundColor=UIColor.grayColor()
+        TextC.layer.borderColor=UIColor.yellow.cgColor
+        TextD.backgroundColor=UIColor.gray
         TextD.layer.cornerRadius=10
         TextD.layer.borderWidth=1
-        TextD.layer.borderColor=UIColor.grayColor().CGColor
+        TextD.layer.borderColor=UIColor.gray.cgColor
     }
-    @IBAction func AnswerD(sender: AnyObject) {
+    @IBAction func AnswerD(_ sender: AnyObject) {
         //defaults.setValue("D", forKeyPath: "answer")
         click("D")
-        TextA.backgroundColor=UIColor.grayColor()
+        TextA.backgroundColor=UIColor.gray
         TextA.layer.cornerRadius=10
         TextA.layer.borderWidth=1
-        TextA.layer.borderColor=UIColor.grayColor().CGColor
-        TextB.backgroundColor=UIColor.grayColor()
+        TextA.layer.borderColor=UIColor.gray.cgColor
+        TextB.backgroundColor=UIColor.gray
         TextB.layer.cornerRadius=10
         TextB.layer.borderWidth=1
-        TextB.layer.borderColor=UIColor.grayColor().CGColor
-        TextC.backgroundColor=UIColor.grayColor()
+        TextB.layer.borderColor=UIColor.gray.cgColor
+        TextC.backgroundColor=UIColor.gray
         TextC.layer.cornerRadius=10
         TextC.layer.borderWidth=1
-        TextC.layer.borderColor=UIColor.grayColor().CGColor
-        TextD.backgroundColor=UIColor.yellowColor()
+        TextC.layer.borderColor=UIColor.gray.cgColor
+        TextD.backgroundColor=UIColor.yellow
         TextD.layer.cornerRadius=10
         TextD.layer.borderWidth=1
-        TextD.layer.borderColor=UIColor.yellowColor().CGColor
+        TextD.layer.borderColor=UIColor.yellow.cgColor
     }
     
     //Other Stuff
     @IBOutlet weak var TimerLabel: UILabel!
-    @IBAction func ResetQuiz(sender: AnyObject) {
+    @IBAction func ResetQuiz(_ sender: AnyObject) {
         score = 0
         time = 20
-        timer = NSTimer()
+        timer = Timer()
         questionNumber = 1
         questionTotal = 2
         P1ScoreNumber=0
@@ -174,27 +174,27 @@ class QuizViewController: UIViewController {
         
         //TODO: Hide reset quiz button
         ResetButton.alpha=0
-        ResetButton.enabled=false
+        ResetButton.isEnabled=false
         
         //TODO: Load Question 1
         
         //Set button colors
-        TextA.backgroundColor=UIColor.grayColor()
+        TextA.backgroundColor=UIColor.gray
         TextA.layer.cornerRadius=10
         TextA.layer.borderWidth=1
-        TextA.layer.borderColor=UIColor.grayColor().CGColor
-        TextB.backgroundColor=UIColor.grayColor()
+        TextA.layer.borderColor=UIColor.gray.cgColor
+        TextB.backgroundColor=UIColor.gray
         TextB.layer.cornerRadius=10
         TextB.layer.borderWidth=1
-        TextB.layer.borderColor=UIColor.grayColor().CGColor
-        TextC.backgroundColor=UIColor.grayColor()
+        TextB.layer.borderColor=UIColor.gray.cgColor
+        TextC.backgroundColor=UIColor.gray
         TextC.layer.cornerRadius=10
         TextC.layer.borderWidth=1
-        TextC.layer.borderColor=UIColor.grayColor().CGColor
-        TextD.backgroundColor=UIColor.grayColor()
+        TextC.layer.borderColor=UIColor.gray.cgColor
+        TextD.backgroundColor=UIColor.gray
         TextD.layer.cornerRadius=10
         TextD.layer.borderWidth=1
-        TextD.layer.borderColor=UIColor.grayColor().CGColor
+        TextD.layer.borderColor=UIColor.gray.cgColor
 
     }
     @IBOutlet weak var ResetButton: UIButton!
@@ -203,7 +203,7 @@ class QuizViewController: UIViewController {
     //Variables
     var score = 0
     var time = 20
-    var timer = NSTimer()
+    var timer = Timer()
     var questionNumber = 1
     var questionTotal = 2
     var P1ScoreNumber=0
@@ -250,35 +250,35 @@ class QuizViewController: UIViewController {
         
         //Hide reset quiz button
         ResetButton.alpha=0
-        ResetButton.enabled=false
+        ResetButton.isEnabled=false
         
         //Load Question 1
         loadQuestion(1)
         
         
         //Set Timer
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(QuizViewController.updateTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(QuizViewController.updateTimer), userInfo: nil, repeats: true)
         /*Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(updateDeviceMotion), userInfo: nil, repeats: true)
         self.motion  motionManager.deviceMotionUpdateInterval = 1.0/60.0
         self.motionManager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)*/
         
         //Set button colors
-        TextA.backgroundColor=UIColor.grayColor()
+        TextA.backgroundColor=UIColor.gray
         TextA.layer.cornerRadius=10
         TextA.layer.borderWidth=1
-        TextA.layer.borderColor=UIColor.grayColor().CGColor
-        TextB.backgroundColor=UIColor.grayColor()
+        TextA.layer.borderColor=UIColor.gray.cgColor
+        TextB.backgroundColor=UIColor.gray
         TextB.layer.cornerRadius=10
         TextB.layer.borderWidth=1
-        TextB.layer.borderColor=UIColor.grayColor().CGColor
-        TextC.backgroundColor=UIColor.grayColor()
+        TextB.layer.borderColor=UIColor.gray.cgColor
+        TextC.backgroundColor=UIColor.gray
         TextC.layer.cornerRadius=10
         TextC.layer.borderWidth=1
-        TextC.layer.borderColor=UIColor.grayColor().CGColor
-        TextD.backgroundColor=UIColor.grayColor()
+        TextC.layer.borderColor=UIColor.gray.cgColor
+        TextD.backgroundColor=UIColor.gray
         TextD.layer.cornerRadius=10
         TextD.layer.borderWidth=1
-        TextD.layer.borderColor=UIColor.grayColor().CGColor
+        TextD.layer.borderColor=UIColor.gray.cgColor
         
     }
     
@@ -305,7 +305,7 @@ class QuizViewController: UIViewController {
             }else if(questionNumber==questionTotal){
                 //Show who won
                 ResetButton.alpha=100
-                ResetButton.enabled=true
+                ResetButton.isEnabled=true
             }
         }
     }
@@ -315,14 +315,14 @@ class QuizViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func updateLabel(label: UILabel, text: String){
+    func updateLabel(_ label: UILabel, text: String){
         label.text=text
     }
-    func updateButtonText(button: UIButton, text: String){
-        button.setTitle(text, forState: .Normal)
+    func updateButtonText(_ button: UIButton, text: String){
+        button.setTitle(text, for: UIControlState())
     }
     
-    func loadQuestion(questionNumber : Int) {
+    func loadQuestion(_ questionNumber : Int) {
         let q = model.questions[questionNumber-1]
         QuestionLabel.text = q.sentence
         updateButtonText(TextA, text: q.A)
@@ -351,7 +351,7 @@ class QuizViewController: UIViewController {
     }
     
     
-    func getAnswerButton(letter : String) -> UIButton {
+    func getAnswerButton(_ letter : String) -> UIButton {
         if (letter == "A") {
             return TextA
         } else if (letter == "B") {
@@ -363,7 +363,7 @@ class QuizViewController: UIViewController {
         }
     }
     
-    func click(buttonLetter : String) {
+    func click(_ buttonLetter : String) {
         if (buttonLetter == selectedAnswer) {
             submit()
         } else {
@@ -373,7 +373,7 @@ class QuizViewController: UIViewController {
     }
     
     
-    func higlightButton(but : UIButton) {
+    func higlightButton(_ but : UIButton) {
         //TODO actually highlight button instead
         but.titleLabel?.text = "<" + but.titleLabel!.text! + ">"
     }
