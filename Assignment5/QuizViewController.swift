@@ -280,6 +280,9 @@ class QuizViewController: UIViewController {
         TextD.layer.borderWidth=1
         TextD.layer.borderColor=UIColor.gray.cgColor
         
+        
+        
+        
     }
     
     func updateTimer() {
@@ -401,6 +404,9 @@ class QuizViewController: UIViewController {
     }*/
     
     
+    
+    
+        
     
     
     
