@@ -12,34 +12,37 @@ import WebKit
 
 class JsonLoader {
     
-    static func getJSONData(completionHandler: (([Question])-> Void)) {
+    static func getJSONData(_ completionHandler: @escaping (([Question])-> Void)) {
         
         let urlString = "http://people.vcu.edu/~ebulut/jsonFiles/quiz1.json"
-        let url = NSURL(string: urlString)
+        let url = URL(string: urlString)
         
-        let session = NSURLSession.sharedSession()
+        let session = URLSession.shared
         var questions : [Question] = []
         
         // create a data task
-        let task = session.dataTaskWithURL(url!, completionHandler: { (data, response, error) in
+        let task = session.dataTask(with: url!, completionHandler: { (data, response, error) in
             
             if let result = data{
                 
                 print("inside get JSON")
                 do{
-                    let json = try NSJSONSerialization.JSONObjectWithData(result, options: .AllowFragments)
+                    let json = try JSONSerialization.jsonObject(with: result, options: .allowFragments)
 
                     
-                    if let lst = json["questions"] as? NSArray {
-                        for questionJson in lst {
+                    if let jsondic = json as? Dictionary<String, Any>,
+                        let lst = jsondic["questions"] as? NSArray {
+                        for questionJ in lst {
                             //print(questionJson["correctOption"])
                             
-                            if let sent = questionJson["questionSentence"] as? String,
+                            if let questionJson = questionJ as? Dictionary<String, Any>,
+                                let sent = questionJson["questionSentence"] as? String,
                                 let n = questionJson["number"] as? Int,
-                                let a = questionJson["options"]!!["A"] as? String,
-                                let b = questionJson["options"]!!["B"] as? String,
-                                let c = questionJson["options"]!!["C"] as? String,
-                                let d = questionJson["options"]!!["D"] as? String,
+                                let opts = questionJson["options"] as? Dictionary<String, Any>,
+                                let a = opts["A"] as? String,
+                                let b = opts["B"] as? String,
+                                let c = opts["C"] as? String,
+                                let d = opts["D"] as? String,
                                 let ans = questionJson["correctOption"] as? String
                                {
                                 let question = Question()

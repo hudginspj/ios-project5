@@ -145,6 +145,8 @@
 				TargetAttributes = {
 					7C35F3641EA32EEB007C6306 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 56AGP6TNR5;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -311,11 +313,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 56AGP6TNR5;
 				INFOPLIST_FILE = Assignment5/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.vcu.hudginspj.Assignment5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -323,11 +326,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 56AGP6TNR5;
 				INFOPLIST_FILE = Assignment5/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.vcu.hudginspj.Assignment5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

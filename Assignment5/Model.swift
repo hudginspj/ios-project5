@@ -11,7 +11,7 @@ import Foundation
 class Model {
     var questions : [Question] = []
     
-    func setQuestions(quests: [Question]){
+    func setQuestions(_ quests: [Question]){
         self.questions = quests
     }
     
