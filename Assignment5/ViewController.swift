@@ -75,12 +75,12 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ChooseSingle(self)
+        setSingle()
         
         
         JsonLoader.getJSONData(model.setQuestions)
         
-        self.peerID = MCPeerID(displayName: UIDevice.current.name)
+        self.peerID = MCPeerID(displayName: UIDevice.current.name + String(arc4random()%100))
         self.session = MCSession(peer: peerID)
         self.browser = MCBrowserViewController(serviceType: "chat", session: session)
         self.assistant = MCAdvertiserAssistant(serviceType: "chat", discoveryInfo: nil, session: session)
@@ -115,14 +115,15 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         
         let msg = "Ping"
         let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: msg)
-        
-        do{
-            try session.send(dataToSend, toPeers: session.connectedPeers, with: .unreliable)
+        print("Peers: " + String(session.connectedPeers.count))
+        if (session.connectedPeers.count != 0) {
+            do{
+                try session.send(dataToSend, toPeers: session.connectedPeers, with: .unreliable)
+            }
+            catch let err {
+                print("Error in sending data \(err)")
+            }
         }
-        catch let err {
-            print("Error in sending data \(err)")
-        }
-        
         //updateChatView(newText: msg!, id: peerID)
         
     }
