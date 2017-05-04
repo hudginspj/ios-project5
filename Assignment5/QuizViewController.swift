@@ -218,7 +218,7 @@ class QuizViewController: UIViewController {
     
     //////////Update from model
     func update() {
-        print("Update Called")
+        //print("Update Called")
         let quest = model.questions[model.questionNumber]
         updateLabel(TimerLabel, text: model.notification)
         loadQuestion(quest)
@@ -306,7 +306,7 @@ class QuizViewController: UIViewController {
     
     func updateDeviceLocation() {
         if let h = locationManager.heading {
-            print(h.magneticHeading)
+            //print(h.magneticHeading)
             model.updateHeading(h.magneticHeading)
         } else {
             print("Heading failed")
