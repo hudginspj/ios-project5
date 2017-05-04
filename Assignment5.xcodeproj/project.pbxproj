@@ -16,6 +16,7 @@
 		7C35F3811EB69CEB007C6306 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F37F1EB69CEB007C6306 /* QuizViewController.swift */; };
 		7C35F3821EB69CEB007C6306 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F3801EB69CEB007C6306 /* ViewController.swift */; };
 		7C35F3841EB6B1D6007C6306 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F3831EB6B1D6007C6306 /* Model.swift */; };
+		D053F73D1EBBD02800E0181A /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D053F73C1EBBD02800E0181A /* logo.png */; };
 		D0797C571EB6A876004305AF /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C511EB6A876004305AF /* blue.png */; };
 		D0797C581EB6A876004305AF /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C521EB6A876004305AF /* green.png */; };
 		D0797C591EB6A876004305AF /* multi.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C531EB6A876004305AF /* multi.png */; };
@@ -36,6 +37,7 @@
 		7C35F37F1EB69CEB007C6306 /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		7C35F3801EB69CEB007C6306 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7C35F3831EB6B1D6007C6306 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		D053F73C1EBBD02800E0181A /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = "image resources/logo.png"; sourceTree = "<group>"; };
 		D0797C511EB6A876004305AF /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue.png; path = "image resources/blue.png"; sourceTree = "<group>"; };
 		D0797C521EB6A876004305AF /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = green.png; path = "image resources/green.png"; sourceTree = "<group>"; };
 		D0797C531EB6A876004305AF /* multi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = multi.png; path = "image resources/multi.png"; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		D0797C501EB6A864004305AF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D053F73C1EBBD02800E0181A /* logo.png */,
 				D0797C511EB6A876004305AF /* blue.png */,
 				D0797C521EB6A876004305AF /* green.png */,
 				D0797C531EB6A876004305AF /* multi.png */,
@@ -174,6 +177,7 @@
 				D0797C581EB6A876004305AF /* green.png in Resources */,
 				7C35F36E1EA32EEB007C6306 /* Main.storyboard in Resources */,
 				D0797C5A1EB6A876004305AF /* red.png in Resources */,
+				D053F73D1EBBD02800E0181A /* logo.png in Resources */,
 				D0797C571EB6A876004305AF /* blue.png in Resources */,
 				D0797C591EB6A876004305AF /* multi.png in Resources */,
 				D0797C5B1EB6A876004305AF /* single.png in Resources */,

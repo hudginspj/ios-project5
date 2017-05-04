@@ -35,14 +35,15 @@
                                     <constraint firstAttribute="width" secondItem="Brp-6r-n5B" secondAttribute="height" multiplier="1:1" id="wbV-p2-r25"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6VP-JU-GTu">
-                                <rect key="frame" x="71" y="72" width="272" height="70"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="6VP-JU-GTu">
+                                <rect key="frame" x="71" y="72" width="272" height="97"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="6VP-JU-GTu" secondAttribute="height" multiplier="241:62" id="7mI-Hv-tsp"/>
+                                    <constraint firstAttribute="width" secondItem="6VP-JU-GTu" secondAttribute="height" multiplier="272:97" id="UNG-ZB-n1g"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6x-p8-s3Q">
                                 <rect key="frame" x="56" y="318" width="128" height="53"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Single Player"/>
                                 <connections>
                                     <action selector="ChooseSingle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uwm-Uc-lC3"/>
@@ -53,6 +54,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="shZ-l1-9FS" secondAttribute="height" multiplier="241:48" id="bgx-XK-oCa"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <segue destination="dAN-Q5-wiB" kind="show" id="y3f-RY-E3D"/>
@@ -60,6 +62,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7U-gL-bVk">
                                 <rect key="frame" x="191" y="318" width="128" height="53"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Multi Player"/>
                                 <connections>
                                     <action selector="ChooseMulti:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4h5-k1-zVU"/>
@@ -119,16 +122,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="uqE-yF-Fpe" secondAttribute="height" multiplier="305:41" id="KfH-ah-uFc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Blah blah blah blah blah blah blah?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j1-5E-3RS">
-                                <rect key="frame" x="39" y="318" width="336" height="100"/>
-                                <color key="backgroundColor" red="0.57798813604610799" green="0.92890611208177032" blue="0.93314847797927458" alpha="0.70375770246478875" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="2j1-5E-3RS" secondAttribute="height" multiplier="305:91" id="Ing-5l-ovw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PV7-En-ekY">
@@ -141,14 +135,14 @@
                                     <action selector="ResetQuiz:" destination="dAN-Q5-wiB" eventType="touchUpInside" id="Trs-hp-1nF"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ddL-nH-Ijk">
-                                <rect key="frame" x="16" y="412" width="343" height="60"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ddL-nH-Ijk">
+                                <rect key="frame" x="16" y="414" width="343" height="62.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wiY-P3-7fd">
-                                        <rect key="frame" x="0.0" y="0.0" width="171.5" height="60"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="wiY-P3-7fd">
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="62.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOf-8t-xQ8">
-                                                <rect key="frame" x="0.0" y="0.0" width="171.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="170" height="29.5"/>
                                                 <color key="backgroundColor" red="0.90707982512953367" green="0.90092030457143801" blue="0.90549009949797921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="lOf-8t-xQ8" secondAttribute="height" multiplier="57:10" id="g6L-hs-5fz"/>
@@ -161,7 +155,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uE-2L-WaK">
-                                                <rect key="frame" x="0.0" y="30" width="171.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="32.5" width="170" height="30"/>
                                                 <color key="backgroundColor" red="0.90707982512953367" green="0.90092030457143801" blue="0.90549009949797921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="5uE-2L-WaK" secondAttribute="height" multiplier="57:10" id="stU-0g-bcm"/>
@@ -175,11 +169,11 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8ac-Ia-yfh">
-                                        <rect key="frame" x="171.5" y="0.0" width="171.5" height="60"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="8ac-Ia-yfh">
+                                        <rect key="frame" x="173" y="0.0" width="170" height="62.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uD-cE-tE7">
-                                                <rect key="frame" x="0.0" y="0.0" width="171.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="170" height="29.5"/>
                                                 <color key="backgroundColor" red="0.90707982512953367" green="0.90092030457143801" blue="0.90549009949797921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="9uD-cE-tE7" secondAttribute="height" multiplier="57:10" id="UgC-jf-Ipw"/>
@@ -192,7 +186,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SF4-x6-maq">
-                                                <rect key="frame" x="0.0" y="30" width="171.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="32.5" width="170" height="30"/>
                                                 <color key="backgroundColor" red="0.90707982512953367" green="0.90092030457143801" blue="0.90549009949797921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="SF4-x6-maq" secondAttribute="height" multiplier="57:10" id="YcV-Jo-4mQ"/>
@@ -216,7 +210,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="117" id="q2o-ya-QLT"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ad-qZ-PZw">
@@ -326,6 +320,15 @@
                                     <constraint firstItem="V2m-Mm-mg8" firstAttribute="width" secondItem="Vcj-SP-f4A" secondAttribute="width" id="kHn-Wg-HVP"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Blah blah blah blah blah blah blah?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j1-5E-3RS">
+                                <rect key="frame" x="16" y="318" width="336" height="100"/>
+                                <color key="backgroundColor" red="0.57798813604610799" green="0.92890611208177032" blue="0.93314847797927458" alpha="0.70375770246478875" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2j1-5E-3RS" secondAttribute="height" multiplier="305:91" id="Ing-5l-ovw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -400,6 +403,7 @@
     <resources>
         <image name="blue.png" width="256" height="256"/>
         <image name="green.png" width="256" height="256"/>
+        <image name="logo.png" width="960" height="646"/>
         <image name="multi.png" width="256" height="256"/>
         <image name="red.png" width="256" height="256"/>
         <image name="single.png" width="256" height="256"/>
