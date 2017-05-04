@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var MultiplayerImage: UIImageView!
     @IBOutlet weak var SinglePlayerImage: UIImageView!
     
+    @IBOutlet weak var MultiButton: UIButton!
+    @IBOutlet weak var SingleButton: UIButton!
     //Set user defaults
     let defaults = NSUserDefaults.standardUserDefaults()
     
@@ -24,17 +26,47 @@ class ViewController: UIViewController {
     @IBAction func ChooseSingle(sender: AnyObject) {
         //Change settings to single player mode
         defaults.setBool(false, forKey: "multi")
+        NSLog("Single")
+        MultiButton.backgroundColor=UIColor.blueColor()
+        MultiButton.layer.cornerRadius=13
+        MultiButton.layer.borderWidth=2
+        MultiButton.layer.borderColor=UIColor.blueColor().CGColor
+        SingleButton.backgroundColor=UIColor.whiteColor()
+        SingleButton.layer.cornerRadius=13
+        SingleButton.layer.borderWidth=2
+        SingleButton.layer.borderColor=UIColor.blueColor().CGColor
+    
+        MultiButton.titleLabel?.textColor=UIColor.whiteColor()
+        SingleButton.titleLabel?.textColor=UIColor.blueColor()
     }
+    
     @IBAction func ChooseMulti(sender: AnyObject) {
         //Change settings to multi player mode
         defaults.setBool(true, forKey: "multi")
+        NSLog("Multi")
+        MultiButton.backgroundColor=UIColor.whiteColor()
+        MultiButton.layer.cornerRadius=13
+        MultiButton.layer.borderWidth=2
+        MultiButton.layer.borderColor=UIColor.blueColor().CGColor
+        SingleButton.backgroundColor=UIColor.blueColor()
+        SingleButton.layer.cornerRadius=13
+        SingleButton.layer.borderWidth=2
+        SingleButton.layer.borderColor=UIColor.blueColor().CGColor
+        
+        MultiButton.titleLabel?.textColor=UIColor.blueColor()
+        SingleButton.titleLabel?.textColor=UIColor.whiteColor()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ChooseSingle(self)
+        
+        
         JsonLoader.getJSONData(model.setQuestions)
+        
 
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
