@@ -37,6 +37,14 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var TextC: UIButton!
     @IBOutlet weak var TextD: UIButton!
     
+    //Player images
+    @IBOutlet weak var P1Image: UIImageView!
+    @IBOutlet weak var P2Image: UIImageView!
+    @IBOutlet weak var P3Image: UIImageView!
+    @IBOutlet weak var P4Image: UIImageView!
+    
+    var numberOfPlayers=1
+    
     //Quiz Answer choices
     @IBAction func AnswerA(sender: AnyObject) {
         //defaults.setValue("A", forKeyPath: "answer")
@@ -123,7 +131,7 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var TimerLabel: UILabel!
     @IBAction func ResetQuiz(sender: AnyObject) {
         score = 0
-        time = 25
+        time = 20
         timer = NSTimer()
         questionNumber = 1
         questionTotal = 2
@@ -135,7 +143,20 @@ class QuizViewController: UIViewController {
         
         //Set initial values
         defaults.setValue(nil, forKeyPath: "answer")
-        updateLabel(TimerLabel, text: String(25))
+        updateLabel(TimerLabel, text: String(20))
+        
+        
+        //TODO: Find out how many players are connected
+        if(numberOfPlayers<4){
+            P4Image.alpha=0.4
+        }
+        if(numberOfPlayers<3){
+            P3Image.alpha=0.4
+        }
+        if(numberOfPlayers<2){
+            P2Image.alpha=0.4
+        }
+        
         
         //Set Answer labels and scores
         updateLabel(P1Answer, text: "")
@@ -181,7 +202,7 @@ class QuizViewController: UIViewController {
     
     //Variables
     var score = 0
-    var time = 25
+    var time = 20
     var timer = NSTimer()
     var questionNumber = 1
     var questionTotal = 2
@@ -196,9 +217,21 @@ class QuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //TODO: Find out how many players are connected
+        if(numberOfPlayers<4){
+            P4Image.alpha=0.4
+        }
+        if(numberOfPlayers<3){
+            P3Image.alpha=0.4
+        }
+        if(numberOfPlayers<2){
+            P2Image.alpha=0.4
+        }
+        
+        
         //Set initial values
         defaults.setValue(nil, forKeyPath: "answer")
-        updateLabel(TimerLabel, text: String(25))
+        updateLabel(TimerLabel, text: String(20))
         
         //Set Answer labels and scores
         updateLabel(P1Answer, text: "")
@@ -259,7 +292,7 @@ class QuizViewController: UIViewController {
             
             
         }else if (time < -3){
-            time=25
+            time=20
             updateLabel(TimerLabel, text: String(time))
             if(questionNumber<questionTotal){
                 questionNumber=questionNumber+1
