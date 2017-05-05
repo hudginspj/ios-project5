@@ -72,7 +72,7 @@ class QuizViewController: UIViewController {
         model.sendMessage(["message": "Ping \(time)"])
         
         click("A")
-        TextA.backgroundColor=UIColor.yellow
+        /*TextA.backgroundColor=UIColor.yellow
         TextA.layer.cornerRadius=10
         TextA.layer.borderWidth=1
         TextA.layer.borderColor=UIColor.yellow.cgColor
@@ -87,12 +87,12 @@ class QuizViewController: UIViewController {
         TextD.backgroundColor=UIColor.gray
         TextD.layer.cornerRadius=10
         TextD.layer.borderWidth=1
-        TextD.layer.borderColor=UIColor.gray.cgColor
+        TextD.layer.borderColor=UIColor.gray.cgColor*/
     }
     @IBAction func AnswerB(_ sender: AnyObject) {
         //defaults.setValue("B", forKeyPath: "answer")
         click("B")
-        TextA.backgroundColor=UIColor.gray
+        /*TextA.backgroundColor=UIColor.gray
         TextA.layer.cornerRadius=10
         TextA.layer.borderWidth=1
         TextA.layer.borderColor=UIColor.gray.cgColor
@@ -107,12 +107,12 @@ class QuizViewController: UIViewController {
         TextD.backgroundColor=UIColor.gray
         TextD.layer.cornerRadius=10
         TextD.layer.borderWidth=1
-        TextD.layer.borderColor=UIColor.gray.cgColor
+        TextD.layer.borderColor=UIColor.gray.cgColor*/
     }
     @IBAction func AnswerC(_ sender: AnyObject) {
         //defaults.setValue("C", forKeyPath: "answer")
         click("C")
-        TextA.backgroundColor=UIColor.gray
+        /*TextA.backgroundColor=UIColor.gray
         TextA.layer.cornerRadius=10
         TextA.layer.borderWidth=1
         TextA.layer.borderColor=UIColor.gray.cgColor
@@ -127,12 +127,12 @@ class QuizViewController: UIViewController {
         TextD.backgroundColor=UIColor.gray
         TextD.layer.cornerRadius=10
         TextD.layer.borderWidth=1
-        TextD.layer.borderColor=UIColor.gray.cgColor
+        TextD.layer.borderColor=UIColor.gray.cgColor*/
     }
     @IBAction func AnswerD(_ sender: AnyObject) {
         //defaults.setValue("D", forKeyPath: "answer")
         click("D")
-        TextA.backgroundColor=UIColor.gray
+        /*TextA.backgroundColor=UIColor.gray
         TextA.layer.cornerRadius=10
         TextA.layer.borderWidth=1
         TextA.layer.borderColor=UIColor.gray.cgColor
@@ -147,14 +147,13 @@ class QuizViewController: UIViewController {
         TextD.backgroundColor=UIColor.yellow
         TextD.layer.cornerRadius=10
         TextD.layer.borderWidth=1
-        TextD.layer.borderColor=UIColor.yellow.cgColor
+        TextD.layer.borderColor=UIColor.yellow.cgColor*/
     }
     
     //Other Stuff
     @IBOutlet weak var TimerLabel: UILabel!
     @IBAction func ResetQuiz(_ sender: AnyObject) {
-        score = 0
-        time = 20
+        
         timer = Timer()
         questionNumber = 1
         questionTotal = 2
@@ -230,22 +229,14 @@ class QuizViewController: UIViewController {
     
     
     //Variables
-    var score = 0
-    var time = 20
     var timer = Timer()
-    var questionNumber = 1
-    var questionTotal = 2
-    var P1ScoreNumber=0
-    var P2ScoreNumber=0
-    var P3ScoreNumber=0
-    var P4ScoreNumber=0
+    
     
     var numberOfPlayers=1
     
     var model = Model()
     var motionManager: CMMotionManager!
     
-    var selectedAnswer = "A"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -307,7 +298,7 @@ class QuizViewController: UIViewController {
         
         
         //Set Timer
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(QuizViewController.updateTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(model.tickClock), userInfo: nil, repeats: true)
         
         
         //Set button colors
@@ -333,9 +324,48 @@ class QuizViewController: UIViewController {
         
     }
     
-    func updateTimer() {
-        time=time-1
-        if(time>0){
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func updateLabel(_ label: UILabel, text: String){
+        label.text=text
+    }
+    func updateButtonText(_ button: UIButton, text: String){
+        button.setTitle(text, for: UIControlState())
+    }
+    
+    func loadQuestion(_ q : Question) {
+        QuestionLabel.text = q.sentence
+        updateButtonText(TextA, text: q.A)
+        updateButtonText(TextB, text: q.B)
+        updateButtonText(TextC, text: q.C)
+        updateButtonText(TextD, text: q.D)
+    }
+    
+    
+    //////////Update from model
+    func update() {
+        print("Update Called")
+        let quest = model.questions[model.questionNumber]
+        updateLabel(TimerLabel, text: model.notification)
+        loadQuestion(quest)
+        if model.submitted {
+            let but = getAnswerButton(quest.answer)
+            but.backgroundColor=UIColor.green
+            but.layer.borderColor=UIColor.green.cgColor
+        }
+        
+        if model.gameOver {
+            ResetButton.alpha=100
+            ResetButton.isEnabled=true
+        }
+        
+        
+        
+        /*if(time>0){
             updateLabel(TimerLabel, text: String(time))
         }else if(time == 0) {
             updateLabel(TimerLabel, text: "Times Up")
@@ -358,59 +388,14 @@ class QuizViewController: UIViewController {
                 ResetButton.alpha=100
                 ResetButton.isEnabled=true
             }
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func updateLabel(_ label: UILabel, text: String){
-        label.text=text
-    }
-    func updateButtonText(_ button: UIButton, text: String){
-        button.setTitle(text, for: UIControlState())
-    }
-    
-    func loadQuestion(_ questionNumber : Int) {
-        let q = model.questions[questionNumber-1]
-        QuestionLabel.text = q.sentence
-        updateButtonText(TextA, text: q.A)
-        updateButtonText(TextB, text: q.B)
-        updateButtonText(TextC, text: q.C)
-        updateButtonText(TextD, text: q.D)
-    }
-    
-    
-    //////////Update from model
-    func update() {
-        print("Update Called")
+        }*/
     }
     
     
     
     ///////////Selecting questions
     
-    func submit() {
-        let q = model.questions[questionNumber-1]
-        //TODO: fix scoring
-        //Check for correct answer
-        if (selectedAnswer == q.answer) {
-            score += 42 //TODO fix scoring
-        } else {
-            score -= 77
-            updateButtonText(getAnswerButton(selectedAnswer), text: "WRONG!")
-        }
-        
-        //Highlight correct answer
-        let but = getAnswerButton(q.answer)
-        but.backgroundColor=UIColor.green
-        but.layer.borderColor=UIColor.green.cgColor
-        
-        
-    }
-    
+   
     
     func getAnswerButton(_ letter : String) -> UIButton {
         if (letter == "A") {
@@ -433,8 +418,10 @@ class QuizViewController: UIViewController {
     }
     
     func selectAns(_ letter : String) {
-        model.selectedAnswer = letter
-        higlightButton(letter)
+        if (!model.submitted) {
+            model.selectedAnswer = letter
+            higlightButton(letter)
+        }
     }
     
     
