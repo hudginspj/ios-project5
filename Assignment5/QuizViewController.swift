@@ -89,6 +89,8 @@ class QuizViewController: UIViewController {
     //Other Stuff
     @IBOutlet weak var TimerLabel: UILabel!
     @IBAction func ResetQuiz(_ sender: AnyObject) {
+        if !model.gameOver { return }
+        model.sendMessage(["type" : "reset"])
         
         timer = Timer()
 
@@ -145,6 +147,7 @@ class QuizViewController: UIViewController {
         //    self.TextB.setTitle(data["message"], for: UIControlState())
         //}
         model.updateCallback = self.update
+        model.resetCallback = {()->Void in self.ResetQuiz(self)}
         model.newQuiz()
         
         self.motionManager = CMMotionManager()
@@ -234,7 +237,7 @@ class QuizViewController: UIViewController {
             ResetButton.alpha=100
             ResetButton.isEnabled=true
         }
-        print("updating scores")
+        //print("updating scores")
         
         updateLabel(P1Answer, text: model.getAns(0))
         updateLabel(P2Answer, text: model.getAns(1))
@@ -317,10 +320,16 @@ class QuizViewController: UIViewController {
             //let rotation = data.rotationRate
             
             //print("pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+            
             if userAcceleration.z < -1.2 {
-                print("pushed")
-                model.submit()
-            } else if (attitude.pitch < -0.1) {
+                print("Accel")
+                if (!model.submitted) { model.submit() }
+                
+            } else if (attitude.yaw > 1.0 || attitude.yaw < -1.0) {
+                print("Yawed")
+                if (!model.submitted) { model.submit() }
+                
+            }else if (attitude.pitch < -0.1) {
                 if model.selectedAnswer == "C" { selectAns("A") }
                 if model.selectedAnswer == "D" { selectAns("B") }
             } else if (attitude.pitch > 0.6) {
@@ -342,7 +351,7 @@ class QuizViewController: UIViewController {
             //print(h.magneticHeading)
             model.updateHeading(h.magneticHeading)
         } else {
-            print("Heading failed")
+            //print("Heading failed")
         }
     }
     

@@ -11,6 +11,7 @@ import MultipeerConnectivity
 
 class Model {
     
+    
     final var A = "A"
     final var B = "B"
     final var C = "C"
@@ -20,6 +21,7 @@ class Model {
     var session: MCSession!
     //var messageCallback = {(data: [String: String]) -> Void in print("default message callback")}
     var updateCallback = {()->Void in print("default update callback")}
+    var resetCallback = {()->Void in print("default reset callback")}
 
     var players = ["Default", "not", "not", "not"] //TODO set this
     var submissions = [String : String]()
@@ -247,11 +249,6 @@ class Model {
                 print("Not joined, forcing")
                 updateCallback()
             }
-            //join()
-            
-        //} else if data["type"] == "start" {
-        //    addPlayer(data["name"]!)
-        //    join()
         } else if data["type"] == "submit" {
             scores[data["name"]!] = data["score"]
             submissions[data["name"]!] = data["ans"]
@@ -263,6 +260,8 @@ class Model {
                 otherHeadings[data["name"]!] = h
                 fixHeadings()
             }
+        }else if data["type"] == "reset" {
+            resetCallback()
         }
         
         
@@ -290,6 +289,7 @@ class Model {
     
     func updateHeading(_ h : Double) {
         heading = h
+        print("Heading: \(heading)")
         sendMessage(["type" : "heading", "name" : getLocalName(), "heading" : "\(heading)"])
         fixHeadings()
     }
