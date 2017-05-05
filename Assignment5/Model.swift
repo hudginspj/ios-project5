@@ -23,6 +23,7 @@ class Model {
 
     var players = ["Default"]  //TODO set this
     var submissions = [String : String]()
+    var subRecieved = [String : Bool]()
     var scores = [String : String]()
     
     var score = 0
@@ -63,7 +64,10 @@ class Model {
     func newQuestion(){
         print("newQuestion called")
         submitted = false
-        time = 7
+        for var (nam, _) in subRecieved {
+            subRecieved[nam] = false
+        }
+        time = 10
         notification = "\(time)"
         selectedAnswer = A
         questionNumber += 1
@@ -99,14 +103,16 @@ class Model {
         time -= 1
         if (gameOver) {
             if time <= 0 {
-                newQuiz()
+                //newQuiz()
             }
         } else {
             if time > 0 {
                 if !submitted {notification = "\(time)"}
             } else if time == 0 {
-                notification = "Time's up!"
-                submit()
+                if !submitted {
+                    notification = "Time's up!"
+                    submit()
+                }
             } else if time <= -3 {
                 newQuestion()
             }
@@ -126,7 +132,9 @@ class Model {
         }
         scores[players[0]] = "\(score)"
         submissions[players[0]] = selectedAnswer
+        subRecieved[players[0]] = true
         sendMessage(["type" : "submit", "name" : getName(), "ans" : selectedAnswer, "score": "\(score)" ])
+        checkIfAllSubmitted()
         
         updateCallback()
     }
@@ -136,7 +144,7 @@ class Model {
     
     func getScore(_ n : Int) -> String {
         if (n >= players.count) {
-            return "NS"
+            return ""
         } else if let scr = scores[players[n]] {
             return scr
         } else {
@@ -150,11 +158,16 @@ class Model {
         
         
         if (n >= players.count) {
-            return "NA"
-        } else if let ans = submissions[players[n]] {
-            return ans
+            return ""
+        } else if let ans = submissions[players[n]],
+                  let rec = subRecieved[players[n]] {
+            if rec {
+                return ans
+            } else {
+                return ""
+            }
         } else {
-            return "s??"
+            return "err"
         }
     }
     
@@ -165,6 +178,7 @@ class Model {
     func setName(_ name : String) {
         players[0] = name
         submissions[name] = ""
+        subRecieved[name] = false
         scores[name] = "0"
     }
     
@@ -172,6 +186,7 @@ class Model {
         if !players.contains(name) {
             players.append(name)
             submissions[name] = ""
+            subRecieved[name] = false
             scores[name] = "0"
         }
     }
@@ -188,6 +203,16 @@ class Model {
         //TODO
     }
     
+    func checkIfAllSubmitted() {
+        var allReccieved = true
+        for var (_, subR) in subRecieved {
+            allReccieved = allReccieved && subR
+        }
+        if allReccieved && time > 0 {
+            time = 0
+        }
+    }
+    
     
     
     ///////////////Messaging
@@ -201,6 +226,8 @@ class Model {
         } else if data["type"] == "submit" {
             scores[data["name"]!] = data["score"]
             submissions[data["name"]!] = data["ans"]
+            subRecieved[data["name"]!] = true
+            checkIfAllSubmitted()
         }
         
         
@@ -208,8 +235,6 @@ class Model {
     }
     
     func sendMessage(_ data : [String:String]) {
-        
-        //let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: msg)
         let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: data)
         print("Peers: " + String(session.connectedPeers.count))
         if (session.connectedPeers.count != 0) {
@@ -220,8 +245,7 @@ class Model {
                 print("Error in sending data \(err)")
             }
         }
-        //updateChatView(newText: msg!, id: peerID)
-        
+
     }
     
     
