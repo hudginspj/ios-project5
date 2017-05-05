@@ -85,7 +85,10 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         JsonLoader.getJSONData("http://people.vcu.edu/~ebulut/jsonFiles/quiz1.json", completionHandler: model.addQuiz)
         JsonLoader.getJSONData("http://people.vcu.edu/~ebulut/jsonFiles/quiz2.json", completionHandler: model.addQuiz)
         
-        self.peerID = MCPeerID(displayName: UIDevice.current.name + String(arc4random()%100))
+        let playerNum = String(arc4random()%100)
+        model.setName("P" + playerNum)
+        
+        self.peerID = MCPeerID(displayName: UIDevice.current.name + playerNum)
         model.session = MCSession(peer: peerID)
         self.browser = MCBrowserViewController(serviceType: "chat", session: model.session)
         self.assistant = MCAdvertiserAssistant(serviceType: "chat", discoveryInfo: nil, session: model.session)
@@ -112,6 +115,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         //}
         if let qvc = segue.destination as? QuizViewController {
             qvc.model = model
+            model.sendStart()
         }
     }
     

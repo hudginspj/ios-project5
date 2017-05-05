@@ -103,7 +103,7 @@ class Model {
             }
         } else {
             if time > 0 {
-                notification = "\(time)"
+                if !submitted {notification = "\(time)"}
             } else if time == 0 {
                 notification = "Time's up!"
                 submit()
@@ -121,8 +121,13 @@ class Model {
             notification = "Correct!"
             score += 1
         } else {
+            score -= 1
             notification = "Wrong!"
         }
+        scores[players[0]] = "\(score)"
+        submissions[players[0]] = selectedAnswer
+        sendMessage(["type" : "submit", "name" : getName(), "ans" : selectedAnswer, "score": "\(score)" ])
+        
         updateCallback()
     }
     
@@ -135,7 +140,7 @@ class Model {
         } else if let scr = scores[players[n]] {
             return scr
         } else {
-            return "NS"
+            return "s??"
         }
     }
     func getAns(_ n : Int) -> String {
@@ -149,29 +154,38 @@ class Model {
         } else if let ans = submissions[players[n]] {
             return ans
         } else {
-            return "NA"
+            return "s??"
         }
-    }
-    
-    
-    func setName(_ name : String) {
-        players[0] = name
     }
     
     func getName() -> String {
         return players[0]
     }
     
-    func addPlayer(_ name : String) {
+    func setName(_ name : String) {
+        players[0] = name
         submissions[name] = ""
         scores[name] = "0"
+    }
+    
+    func addPlayer(_ name : String) {
+        if !players.contains(name) {
+            players.append(name)
+            submissions[name] = ""
+            scores[name] = "0"
+        }
     }
     func join() {
         sendMessage(["type" : "join", "name" : getName()])
     }
     
+    //TODO not called right now
+    func sendStart() {
+        sendMessage(["type" : "start", "name" : getName()])
+    }
+    
     func restart() {
-        
+        //TODO
     }
     
     
@@ -181,6 +195,12 @@ class Model {
         print("Got message \(data["type"])")
         if data["type"] == "join" {
             addPlayer(data["name"]!)
+        } else if data["type"] == "start" {
+            addPlayer(data["name"]!)
+            join()
+        } else if data["type"] == "submit" {
+            scores[data["name"]!] = data["score"]
+            submissions[data["name"]!] = data["ans"]
         }
         
         

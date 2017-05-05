@@ -356,6 +356,8 @@ class QuizViewController: UIViewController {
             let but = getAnswerButton(quest.answer)
             but.backgroundColor=UIColor.green
             but.layer.borderColor=UIColor.green.cgColor
+        } else {
+            higlightButton(model.selectedAnswer)
         }
         
         if model.gameOver {
@@ -364,14 +366,14 @@ class QuizViewController: UIViewController {
         }
         print("updating scores")
         
-        updateLabel(P1Answer, text: model.getAns(1))
-        updateLabel(P2Answer, text: model.getAns(2))
-        updateLabel(P3Answer, text: model.getAns(3))
-        updateLabel(P4Answer, text: model.getAns(4))
-        updateLabel(P1Score, text: model.getScore(1))
-        updateLabel(P2Score, text: model.getScore(2))
-        updateLabel(P3Score, text: model.getScore(3))
-        updateLabel(P4Score, text: model.getScore(4))
+        updateLabel(P1Answer, text: model.getAns(0))
+        updateLabel(P2Answer, text: model.getAns(1))
+        updateLabel(P3Answer, text: model.getAns(2))
+        updateLabel(P4Answer, text: model.getAns(3))
+        updateLabel(P1Score, text: model.getScore(0))
+        updateLabel(P2Score, text: model.getScore(1))
+        updateLabel(P3Score, text: model.getScore(2))
+        updateLabel(P4Score, text: model.getScore(3))
         
         updateLabel(QuestionNumberLabel, text: "Question: "+String(model.questionNumber + 1)+"/"+String(model.questions.count))
         
