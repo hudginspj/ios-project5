@@ -12,7 +12,7 @@ import MultipeerConnectivity
 class Model {
     var session: MCSession!
     
-    var messageCallback = {(msg: String) -> Void in print("default message callback")}
+    var messageCallback = {(data: [String: String]) -> Void in print("default message callback")}
     
     var questions : [Question] = []
     
@@ -22,9 +22,10 @@ class Model {
     }
     
     
-    func sendMessage(msg : String) {
+    func sendMessage(data : [String:String]) {
         
-        let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: msg)
+        //let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: msg)
+        let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: data)
         print("Peers: " + String(session.connectedPeers.count))
         if (session.connectedPeers.count != 0) {
             do{

@@ -36,7 +36,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         //Change settings to single player mode
         SetSingle()
         
-        model.sendMessage(msg: "Ping")
+        model.sendMessage(data: ["message": "Ping"])
     }
     func SetSingle() {
         defaults.set(false, forKey: "multi")
@@ -92,8 +92,8 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         assistant.start()
         model.session.delegate = self
         browser.delegate = self
-        model.messageCallback = {(msg : String) -> Void in
-            self.SingleButton.setTitle(msg, for: UIControlState())
+        model.messageCallback = {(data : [String: String]) -> Void in
+            self.SingleButton.setTitle(data["message"], for: UIControlState())
         }
     }
 
@@ -149,10 +149,12 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         // this needs to be run on the main thread
         DispatchQueue.main.async(execute: {
             
-            if let receivedString = NSKeyedUnarchiver.unarchiveObject(with: data) as? String{
+            if let receivedData = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String: String]{
                 //self.updateChatView(newText: receivedString, id: peerID)
                 //self.SingleButton.setTitle(receivedString, for: UIControlState())
-                self.model.messageCallback(receivedString)
+                self.model.messageCallback(receivedData)
+            } else {
+                print("ERROR Unarchive message failed")
             }
             
         })

@@ -48,6 +48,8 @@ class QuizViewController: UIViewController {
     //Quiz Answer choices
     @IBAction func AnswerA(_ sender: AnyObject) {
         //defaults.setValue("A", forKeyPath: "answer")
+        model.sendMessage(data: ["message": "Ping \(time)"])
+        
         click("A")
         TextA.backgroundColor=UIColor.yellow
         TextA.layer.cornerRadius=10
@@ -219,8 +221,8 @@ class QuizViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        model.messageCallback = {(msg : String) -> Void in
-            self.TextB.setTitle(msg, for: UIControlState())
+        model.messageCallback = {(data : [String: String]) -> Void in
+            self.TextB.setTitle(data["message"], for: UIControlState())
         }
         
         TextA.titleLabel?.adjustsFontSizeToFitWidth = true
