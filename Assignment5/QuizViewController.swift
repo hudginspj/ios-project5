@@ -217,6 +217,8 @@ class QuizViewController: UIViewController {
     var P4ScoreNumber=0
     
     var model = Model()
+    var motionManager: CMMotionManager!
+    
     var selectedAnswer = "A"
 
     override func viewDidLoad() {
@@ -224,6 +226,11 @@ class QuizViewController: UIViewController {
         model.messageCallback = {(data : [String: String]) -> Void in
             self.TextB.setTitle(data["message"], for: UIControlState())
         }
+        
+        self.motionManager = CMMotionManager()
+        self.motionManager.deviceMotionUpdateInterval = 1.0/60.0
+        self.motionManager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)
+        Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(updateDeviceMotion), userInfo: nil, repeats: true)
         
         TextA.titleLabel?.adjustsFontSizeToFitWidth = true
         TextB.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -274,9 +281,7 @@ class QuizViewController: UIViewController {
         
         //Set Timer
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(QuizViewController.updateTimer), userInfo: nil, repeats: true)
-        /*Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(updateDeviceMotion), userInfo: nil, repeats: true)
-        self.motion  motionManager.deviceMotionUpdateInterval = 1.0/60.0
-        self.motionManager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)*/
+        
         
         //Set button colors
         TextA.backgroundColor=UIColor.gray
@@ -400,24 +405,36 @@ class QuizViewController: UIViewController {
     
     ///////////Core Motion
     
-    /*func updateDeviceMotion(){
+    func updateDeviceMotion(){
         
         if let data = self.motionManager.deviceMotion {
             
             // orientation of body relat    ive to a reference frame
             let attitude = data.attitude
             
-            let userAcceleration = data.userAcceleration
+            //let userAcceleration = data.userAcceleration
             
-            let gravity = data.gravity
-            let rotation = data.rotationRate
+            //let gravity = data.gravity
+            //let rotation = data.rotationRate
             
             //print("pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
+            if (attitude.pitch < 0.1) {
+                AnswerA(self)
+            } else if (attitude.pitch > 0.6) {
+                AnswerB(self)
+            } else if (attitude.roll < -0.4) {
+                AnswerC(self)
+            } else if (attitude.roll > 0.4) {
+                AnswerD(self)
+            }
             
-            updateBallWithRoll(CGFloat(attitude.roll), pitch: CGFloat(attitude.pitch), yaw: CGFloat(attitude.yaw), accX: CGFloat(userAcceleration.x), accY: CGFloat(userAcceleration.y), accZ: CGFloat(userAcceleration.z))
+            
+            
+            //updateBallWithRoll(CGFloat(attitude.roll), pitch: CGFloat(attitude.pitch), yaw: CGFloat(attitude.yaw), 
+            //    accX: CGFloat(userAcceleration.x), accY: CGFloat(userAcceleration.y), accZ: CGFloat(userAcceleration.z))
         }
         
-    }*/
+    }
     
     
     
