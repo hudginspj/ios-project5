@@ -57,7 +57,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
-                                    <segue destination="dAN-Q5-wiB" kind="show" id="y3f-RY-E3D"/>
+                                    <segue destination="dAN-Q5-wiB" kind="show" identifier="quiz" id="y3f-RY-E3D"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7U-gL-bVk">

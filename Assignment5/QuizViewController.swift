@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreMotion
+import CoreLocation
 
 class QuizViewController: UIViewController {
     
@@ -132,7 +133,7 @@ class QuizViewController: UIViewController {
     
     var model = Model()
     var motionManager: CMMotionManager!
-    
+    var locationManager: CLLocationManager!
 
     func tickClock() {
         model.tickClock()
@@ -150,6 +151,10 @@ class QuizViewController: UIViewController {
         self.motionManager.deviceMotionUpdateInterval = 1.0/60.0
         self.motionManager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)
         Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(updateDeviceMotion), userInfo: nil, repeats: true)
+        
+        self.locationManager = CLLocationManager()
+        self.locationManager.startUpdatingHeading()
+        Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(updateDeviceLocation), userInfo: nil, repeats: true)
         
         TextA.titleLabel?.adjustsFontSizeToFitWidth = true
         TextB.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -299,6 +304,15 @@ class QuizViewController: UIViewController {
         
     }
     
+    func updateDeviceLocation() {
+        if let h = locationManager.heading {
+            print(h.magneticHeading)
+            model.updateHeading(h.magneticHeading)
+        } else {
+            print("Heading failed")
+        }
+    }
+    
     func updateDeviceMotion(){
         if let data = self.motionManager.deviceMotion {
             
@@ -314,7 +328,7 @@ class QuizViewController: UIViewController {
             if userAcceleration.z < -1.2 {
                 print("pushed")
                 model.submit()
-            } else if (attitude.pitch < 0.1) {
+            } else if (attitude.pitch < -0.1) {
                 if model.selectedAnswer == "C" { selectAns("A") }
                 if model.selectedAnswer == "D" { selectAns("B") }
             } else if (attitude.pitch > 0.6) {

@@ -38,6 +38,7 @@ class Model {
     var questionNumber = 0;
     var quizNumber = -1;
     var gameOver = false
+    var joined = false
     
     var quizzes : [[Question]] = []
     var questions : [Question] = []
@@ -61,7 +62,7 @@ class Model {
         newQuestion()
     }
     
-    func newQuestion(){
+    func newQuestion() {
         print("newQuestion called")
         submitted = false
         for var (nam, _) in subRecieved {
@@ -133,7 +134,7 @@ class Model {
         scores[players[0]] = "\(score)"
         submissions[players[0]] = selectedAnswer
         subRecieved[players[0]] = true
-        sendMessage(["type" : "submit", "name" : getName(), "ans" : selectedAnswer, "score": "\(score)" ])
+        sendMessage(["type" : "submit", "name" : getLocalName(), "ans" : selectedAnswer, "score": "\(score)" ])
         checkIfAllSubmitted()
         
         updateCallback()
@@ -142,36 +143,44 @@ class Model {
     
     /////////////////////////////// Players logic
     
+    func getPlayerName(_ n : Int) -> String{
+        if (n >= players.count) {
+            return ""
+        } else {
+            return players[n]
+        }
+    }
+    
     func getScore(_ n : Int) -> String {
         if (n >= players.count) {
             return ""
         } else if let scr = scores[players[n]] {
-            return scr
+            return "Score: " + scr
         } else {
             return "s??"
         }
     }
     func getAns(_ n : Int) -> String {
-        if (!submitted) {
-            return ""
-        }
-        
         
         if (n >= players.count) {
             return ""
-        } else if let ans = submissions[players[n]],
-                  let rec = subRecieved[players[n]] {
-            if rec {
-                return ans
-            } else {
-                return ""
-            }
         } else {
-            return "err"
+            let pName = players[n]
+            if let ans = submissions[players[n]],
+                  let rec = subRecieved[players[n]] {
+                if rec && submitted {
+                    return pName + ": " + ans
+                } else {
+                    return pName
+                }
+            
+            } else {
+                return "err"
+            }
         }
     }
     
-    func getName() -> String {
+    func getLocalName() -> String {
         return players[0]
     }
     
@@ -191,13 +200,17 @@ class Model {
         }
     }
     func join() {
-        sendMessage(["type" : "join", "name" : getName()])
+        if !joined {
+            sendMessage(["type" : "join", "name" : getLocalName()])
+            joined = true
+        }
     }
     
-    //TODO not called right now
-    func sendStart() {
-        sendMessage(["type" : "start", "name" : getName()])
-    }
+    //func sendStart() {
+    //    if !recceivedStartMesage {
+    //        sendMessage(["type" : "start", "name" : getLocalName()])
+    //    ]
+    //}
     
     func restart() {
         //TODO
@@ -220,9 +233,14 @@ class Model {
         print("Got message \(data["type"])")
         if data["type"] == "join" {
             addPlayer(data["name"]!)
-        } else if data["type"] == "start" {
-            addPlayer(data["name"]!)
-            join()
+            if (!joined) {
+                updateCallback()
+            }
+            //join()
+            
+        //} else if data["type"] == "start" {
+        //    addPlayer(data["name"]!)
+        //    join()
         } else if data["type"] == "submit" {
             scores[data["name"]!] = data["score"]
             submissions[data["name"]!] = data["ans"]
@@ -247,6 +265,8 @@ class Model {
         }
 
     }
+    
+    /////////////////////////Bonus
     
     
     

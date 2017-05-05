@@ -36,7 +36,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         //Change settings to single player mode
         SetSingle()
         
-        model.sendMessage(["message": "Ping"])
+        //model.sendMessage(["message": "Ping"])
     }
     func SetSingle() {
         defaults.set(false, forKey: "multi")
@@ -87,6 +87,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         
         let playerNum = String(arc4random()%100)
         model.setName("P" + playerNum)
+        model.updateCallback = forceJoin
         
         self.peerID = MCPeerID(displayName: UIDevice.current.name + playerNum)
         model.session = MCSession(peer: peerID)
@@ -115,14 +116,17 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         //}
         if let qvc = segue.destination as? QuizViewController {
             qvc.model = model
-            model.sendStart()
+            model.updateCallback = {()-> Void in print("DUMMY CALLBACK") }//TODO this is a total Hack
+            model.join()
         }
     }
     
     ///////////////////////////
     /// Peer to peer
     
-    
+    func forceJoin() {
+        performSegue(withIdentifier: "quiz", sender: self)
+    }
 
     
     
