@@ -21,7 +21,7 @@ class Model {
     //var messageCallback = {(data: [String: String]) -> Void in print("default message callback")}
     var updateCallback = {()->Void in print("default update callback")}
 
-    var players = ["Default"]  //TODO set this
+    var players = ["Default", "not", "not", "not"] //TODO set this
     var submissions = [String : String]()
     var subRecieved = [String : Bool]()
     var scores = [String : String]()
@@ -52,7 +52,7 @@ class Model {
     
 
     func newQuiz() {
-        print("newQuiz called")
+        //print("newQuiz called")
         gameOver = false
         score = 0
         quizNumber += 1
@@ -63,7 +63,7 @@ class Model {
     }
     
     func newQuestion() {
-        print("newQuestion called")
+        //print("newQuestion called")
         submitted = false
         for var (nam, _) in subRecieved {
             subRecieved[nam] = false
@@ -100,7 +100,7 @@ class Model {
     
     
     func tickClock() {
-        print("tick called")
+        //print("tick called")
         time -= 1
         if (gameOver) {
             if time <= 0 {
@@ -144,7 +144,8 @@ class Model {
     /////////////////////////////// Players logic
     
     func getPlayerName(_ n : Int) -> String{
-        if (n >= players.count) {
+        //if (n >= players.count) {
+        if (players[n] == "not") {
             return ""
         } else {
             return players[n]
@@ -152,7 +153,8 @@ class Model {
     }
     
     func getScore(_ n : Int) -> String {
-        if (n >= players.count) {
+        //if (n >= players.count) {
+        if (players[n] == "not") {
             return ""
         } else if let scr = scores[players[n]] {
             return "Score: " + scr
@@ -162,7 +164,8 @@ class Model {
     }
     func getAns(_ n : Int) -> String {
         
-        if (n >= players.count) {
+        //if (n >= players.count) {
+        if (players[n] == "not") {
             return ""
         } else {
             let pName = players[n]
@@ -193,10 +196,16 @@ class Model {
     
     func addPlayer(_ name : String) {
         if !players.contains(name) {
-            players.append(name)
+            var i = 1
+            while (players[i]) != "not" {
+                i += 1
+            }
+            players[i] = name
+            //players.append(name)
             submissions[name] = ""
             subRecieved[name] = false
             scores[name] = "0"
+            otherHeadings[name] = 0.0
         }
     }
     func join() {
@@ -233,7 +242,9 @@ class Model {
         print("Got message \(data["type"])")
         if data["type"] == "join" {
             addPlayer(data["name"]!)
+            print("Got join message")
             if (!joined) {
+                print("Not joined, forcing")
                 updateCallback()
             }
             //join()
@@ -246,6 +257,12 @@ class Model {
             submissions[data["name"]!] = data["ans"]
             subRecieved[data["name"]!] = true
             checkIfAllSubmitted()
+        } else if data["type"] == "heading" {
+            if let h = Double(data["heading"]!) {
+                print("got heading \(h) from \(data["name"]!)")
+                otherHeadings[data["name"]!] = h
+                fixHeadings()
+            }
         }
         
         
@@ -267,6 +284,53 @@ class Model {
     }
     
     /////////////////////////Bonus
+    
+    var heading = 0.0
+    var otherHeadings = [String : Double]()
+    
+    func updateHeading(_ h : Double) {
+        heading = h
+        sendMessage(["type" : "heading", "name" : getLocalName(), "heading" : "\(heading)"])
+        fixHeadings()
+    }
+    
+    func fixHeadings() {
+        if let oh = otherHeadings[players[3]] {
+            let d = dif(oh, heading)
+            if  d > 5.0 && d < 120.0 {
+                let temp = players[3]
+                players[3] = players[1]
+                players[1] = temp
+            }
+        } else if let oh = otherHeadings[players[2]] {
+            let d = dif(oh, heading)
+            if  d > 5.0 && d < 120.0 {
+                let temp = players[2]
+                players[2] = players[1]
+                players[1] = temp
+            }
+        }
+        
+        if let oh = otherHeadings[players[1]] {
+            let d = dif(oh, heading)
+            if  d < -5.0 && d > -120.0 {
+                let temp = players[3]
+                players[3] = players[1]
+                players[1] = temp
+            }
+        }
+        
+        
+    }
+    func dif(_ o : Double, _ t : Double) -> Double{
+        var dif = o - t
+        if dif > 180.0 {
+            dif -= 360.0
+        } else if dif <= -180.0 {
+            dif += 360.0
+        }
+        return dif
+    }
     
     
     

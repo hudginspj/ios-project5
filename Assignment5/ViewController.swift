@@ -125,6 +125,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     /// Peer to peer
     
     func forceJoin() {
+        print("FORCE JOIN")
         performSegue(withIdentifier: "quiz", sender: self)
     }
 
