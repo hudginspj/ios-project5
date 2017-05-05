@@ -11,9 +11,10 @@ import MultipeerConnectivity
 
 class Model {
     var session: MCSession!
-    
-    var messageCallback = {(data: [String: String]) -> Void in print("default message callback")}
-    
+    //var messageCallback = {(data: [String: String]) -> Void in print("default message callback")}
+    var updateCallback = {()->Void in print("default update callback")}
+
+    var selectedAnswer = "A"
     var questions : [Question] = []
     
     
@@ -21,8 +22,12 @@ class Model {
         self.questions = quests
     }
     
+    ///////////////Messaging
+    func recieveMessage(_ data : [String:String]) {
+            
+    }
     
-    func sendMessage(data : [String:String]) {
+    func sendMessage(_ data : [String:String]) {
         
         //let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: msg)
         let dataToSend =  NSKeyedArchiver.archivedData(withRootObject: data)
@@ -38,5 +43,19 @@ class Model {
         //updateChatView(newText: msg!, id: peerID)
         
     }
+        
+        
+    /////////////////////////////// Game logic
+    
+    
+    func submit() {
+        
+    }
+    
+    func tickClock() {
+        
+    }
+    
+    
     
 }

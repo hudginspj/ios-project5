@@ -37,18 +37,39 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var TextC: UIButton!
     @IBOutlet weak var TextD: UIButton!
     
+    
+    func grayButtons() {
+        TextA.backgroundColor=UIColor.gray
+        TextA.layer.cornerRadius=10
+        TextA.layer.borderWidth=1
+        TextA.layer.borderColor=UIColor.gray.cgColor
+        TextB.backgroundColor=UIColor.gray
+        TextB.layer.cornerRadius=10
+        TextB.layer.borderWidth=1
+        TextB.layer.borderColor=UIColor.gray.cgColor
+        TextC.backgroundColor=UIColor.gray
+        TextC.layer.cornerRadius=10
+        TextC.layer.borderWidth=1
+        TextC.layer.borderColor=UIColor.gray.cgColor
+        TextD.backgroundColor=UIColor.gray
+        TextD.layer.cornerRadius=10
+        TextD.layer.borderWidth=1
+        TextD.layer.borderColor=UIColor.gray.cgColor
+    }
+    
+    
     //Player images
     @IBOutlet weak var P1Image: UIImageView!
     @IBOutlet weak var P2Image: UIImageView!
     @IBOutlet weak var P3Image: UIImageView!
     @IBOutlet weak var P4Image: UIImageView!
     
-    var numberOfPlayers=1
+    
     
     //Quiz Answer choices
     @IBAction func AnswerA(_ sender: AnyObject) {
         //defaults.setValue("A", forKeyPath: "answer")
-        model.sendMessage(data: ["message": "Ping \(time)"])
+        model.sendMessage(["message": "Ping \(time)"])
         
         click("A")
         TextA.backgroundColor=UIColor.yellow
@@ -202,6 +223,9 @@ class QuizViewController: UIViewController {
         TextD.layer.borderColor=UIColor.gray.cgColor
 
     }
+    
+    
+    
     @IBOutlet weak var ResetButton: UIButton!
     
     
@@ -216,6 +240,8 @@ class QuizViewController: UIViewController {
     var P3ScoreNumber=0
     var P4ScoreNumber=0
     
+    var numberOfPlayers=1
+    
     var model = Model()
     var motionManager: CMMotionManager!
     
@@ -223,9 +249,10 @@ class QuizViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        model.messageCallback = {(data : [String: String]) -> Void in
-            self.TextB.setTitle(data["message"], for: UIControlState())
-        }
+        //model.messageCallback = {(data : [String: String]) -> Void in
+        //    self.TextB.setTitle(data["message"], for: UIControlState())
+        //}
+        model.updateCallback = self.update
         
         self.motionManager = CMMotionManager()
         self.motionManager.deviceMotionUpdateInterval = 1.0/60.0
@@ -356,6 +383,13 @@ class QuizViewController: UIViewController {
     }
     
     
+    //////////Update from model
+    func update() {
+        print("Update Called")
+    }
+    
+    
+    
     ///////////Selecting questions
     
     func submit() {
@@ -369,8 +403,11 @@ class QuizViewController: UIViewController {
             updateButtonText(getAnswerButton(selectedAnswer), text: "WRONG!")
         }
         
-        //TODO: Highlight correct answer
-        higlightButton(getAnswerButton(q.answer))
+        //Highlight correct answer
+        let but = getAnswerButton(q.answer)
+        but.backgroundColor=UIColor.green
+        but.layer.borderColor=UIColor.green.cgColor
+        
         
     }
     
@@ -388,18 +425,27 @@ class QuizViewController: UIViewController {
     }
     
     func click(_ buttonLetter : String) {
-        if (buttonLetter == selectedAnswer) {
+        if (buttonLetter == model.selectedAnswer) {
             submit()
         } else {
-            selectedAnswer = buttonLetter
-            higlightButton(getAnswerButton(buttonLetter))
+            selectAns(buttonLetter)
         }
     }
     
+    func selectAns(_ letter : String) {
+        model.selectedAnswer = letter
+        higlightButton(letter)
+    }
     
-    func higlightButton(_ but : UIButton) {
-        //TODO actually highlight button instead
-        but.titleLabel?.text = "<" + but.titleLabel!.text! + ">"
+    
+    func higlightButton(_ letter : String) {
+        //but.titleLabel?.text = "<" + but.titleLabel!.text! + ">"
+        let but = getAnswerButton(letter)
+        
+        grayButtons()
+        
+        but.backgroundColor=UIColor.yellow
+        but.layer.borderColor=UIColor.yellow.cgColor
     }
     
     
@@ -431,13 +477,17 @@ class QuizViewController: UIViewController {
                 print("pushed")
                 submit()
             } else if (attitude.pitch < 0.1) {
-                AnswerA(self)
+                if model.selectedAnswer == "C" { selectAns("A") }
+                if model.selectedAnswer == "D" { selectAns("B") }
             } else if (attitude.pitch > 0.6) {
-                AnswerB(self)
+                if model.selectedAnswer == "A" { selectAns("C") }
+                if model.selectedAnswer == "B" { selectAns("D") }
             } else if (attitude.roll < -0.4) {
-                AnswerC(self)
+                if model.selectedAnswer == "B" { selectAns("A") }
+                if model.selectedAnswer == "D" { selectAns("C") }
             } else if (attitude.roll > 0.4) {
-                AnswerD(self)
+                if model.selectedAnswer == "A" { selectAns("B") }
+                if model.selectedAnswer == "C" { selectAns("D") }
             }
             
             

@@ -36,7 +36,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         //Change settings to single player mode
         SetSingle()
         
-        model.sendMessage(data: ["message": "Ping"])
+        model.sendMessage(["message": "Ping"])
     }
     func SetSingle() {
         defaults.set(false, forKey: "multi")
@@ -92,9 +92,9 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         assistant.start()
         model.session.delegate = self
         browser.delegate = self
-        model.messageCallback = {(data : [String: String]) -> Void in
-            self.SingleButton.setTitle(data["message"], for: UIControlState())
-        }
+        //model.messageCallback = {(data : [String: String]) -> Void in
+        //    self.SingleButton.setTitle(data["message"], for: UIControlState())
+        //}
     }
 
     override func didReceiveMemoryWarning() {
@@ -152,7 +152,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
             if let receivedData = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String: String]{
                 //self.updateChatView(newText: receivedString, id: peerID)
                 //self.SingleButton.setTitle(receivedString, for: UIControlState())
-                self.model.messageCallback(receivedData)
+                self.model.recieveMessage(receivedData)
             } else {
                 print("ERROR Unarchive message failed")
             }
