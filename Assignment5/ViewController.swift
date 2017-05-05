@@ -82,7 +82,8 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         StartButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
         
-        JsonLoader.getJSONData(model.setQuestions)
+        JsonLoader.getJSONData("http://people.vcu.edu/~ebulut/jsonFiles/quiz1.json", completionHandler: model.addQuiz)
+        JsonLoader.getJSONData("http://people.vcu.edu/~ebulut/jsonFiles/quiz2.json", completionHandler: model.addQuiz)
         
         self.peerID = MCPeerID(displayName: UIDevice.current.name + String(arc4random()%100))
         model.session = MCSession(peer: peerID)

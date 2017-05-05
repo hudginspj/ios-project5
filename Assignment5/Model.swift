@@ -41,33 +41,41 @@ class Model {
     var quizzes : [[Question]] = []
     var questions : [Question] = []
     
+    func addQuiz(_ quiz : [Question]) {
+        quizzes.append(quiz)
+    }
+    
     
     /////////Game logic
     
 
     func newQuiz() {
+        print("newQuiz called")
         gameOver = false
         score = 0
         quizNumber += 1
-        if quizNumber == quizzes.count { quizNumber = 0 }
+        if quizNumber >= quizzes.count { quizNumber = 0 }
         questions = quizzes[quizNumber]
         questionNumber =  -1
         newQuestion()
     }
     
     func newQuestion(){
+        print("newQuestion called")
         submitted = false
-        time = 20
+        time = 7
         notification = "\(time)"
         selectedAnswer = A
         questionNumber += 1
         if questionNumber == questions.count {
+            questionNumber -= 1
             endGame()
         }
         updateCallback()
     }
     
     func endGame() {
+        print("endGame called")
         gameOver = true
         time = 5
         var maxScore = score
@@ -87,6 +95,7 @@ class Model {
     
     
     func tickClock() {
+        print("tick called")
         time -= 1
         if (gameOver) {
             if time <= 0 {
@@ -106,6 +115,7 @@ class Model {
     }
     
     func submit() {
+        print("submit called")
         submitted = true
         if questions[questionNumber].answer == selectedAnswer {
             notification = "Correct!"
@@ -118,6 +128,31 @@ class Model {
     
     
     /////////////////////////////// Players logic
+    
+    func getScore(_ n : Int) -> String {
+        if (n >= players.count) {
+            return "NS"
+        } else if let scr = scores[players[n]] {
+            return scr
+        } else {
+            return "NS"
+        }
+    }
+    func getAns(_ n : Int) -> String {
+        if (!submitted) {
+            return ""
+        }
+        
+        
+        if (n >= players.count) {
+            return "NA"
+        } else if let ans = submissions[players[n]] {
+            return ans
+        } else {
+            return "NA"
+        }
+    }
+    
     
     func setName(_ name : String) {
         players[0] = name

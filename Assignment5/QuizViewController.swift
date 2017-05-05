@@ -155,12 +155,6 @@ class QuizViewController: UIViewController {
     @IBAction func ResetQuiz(_ sender: AnyObject) {
         
         timer = Timer()
-        questionNumber = 1
-        questionTotal = 2
-        P1ScoreNumber=0
-        P2ScoreNumber=0
-        P3ScoreNumber=0
-        P4ScoreNumber=0
 
         
         //Set initial values
@@ -184,17 +178,17 @@ class QuizViewController: UIViewController {
         
         
         //Set Answer labels and scores
-        updateLabel(P1Answer, text: "")
+        /*updateLabel(P1Answer, text: "")
         updateLabel(P2Answer, text: "")
         updateLabel(P3Answer, text: "")
         updateLabel(P4Answer, text: "")
         updateLabel(P1Score, text: String(P1ScoreNumber))
         updateLabel(P2Score, text: String(P2ScoreNumber))
         updateLabel(P3Score, text: String(P3ScoreNumber))
-        updateLabel(P4Score, text: String(P4ScoreNumber))
+        updateLabel(P4Score, text: String(P4ScoreNumber))*/
         
         //Set question counter
-        updateLabel(QuestionNumberLabel, text: "Question: "+String(questionNumber)+"/"+String(questionTotal))
+        //updateLabel(QuestionNumberLabel, text: "Question: "+String(questionNumber)+"/"+String(questionTotal))
         
         
         //TODO: Hide reset quiz button
@@ -238,12 +232,17 @@ class QuizViewController: UIViewController {
     var motionManager: CMMotionManager!
     
 
+    func tickClock() {
+        model.tickClock()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //model.messageCallback = {(data : [String: String]) -> Void in
         //    self.TextB.setTitle(data["message"], for: UIControlState())
         //}
         model.updateCallback = self.update
+        model.newQuiz()
         
         self.motionManager = CMMotionManager()
         self.motionManager.deviceMotionUpdateInterval = 1.0/60.0
@@ -275,18 +274,18 @@ class QuizViewController: UIViewController {
         updateLabel(TimerLabel, text: String(20))
         
         //Set Answer labels and scores
-        updateLabel(P1Answer, text: "")
-        updateLabel(P2Answer, text: "")
-        updateLabel(P3Answer, text: "")
-        updateLabel(P4Answer, text: "")
-        updateLabel(P1Score, text: String(P1ScoreNumber))
-        updateLabel(P2Score, text: String(P2ScoreNumber))
-        updateLabel(P3Score, text: String(P3ScoreNumber))
-        updateLabel(P4Score, text: String(P4ScoreNumber))
+        /*updateLabel(P1Answer, text: model.getAns(1))
+        updateLabel(P2Answer, text: model.getAns(2))
+        updateLabel(P3Answer, text: model.getAns(3))
+        updateLabel(P4Answer, text: model.getAns(4))
+        updateLabel(P1Score, text: model.getScore(1))
+        updateLabel(P2Score, text: model.getScore(2))
+        updateLabel(P3Score, text: model.getScore(3))
+        updateLabel(P4Score, text: model.getScore(4))*/
         
         //Set question counter
        
-        updateLabel(QuestionNumberLabel, text: "Question: "+String(questionNumber)+"/"+String(questionTotal))
+        //updateLabel(QuestionNumberLabel, text: "Question: "+String(model.questionNumber + 1)+"/"+String(model.questions.count))
         
         
         //Hide reset quiz button
@@ -294,11 +293,12 @@ class QuizViewController: UIViewController {
         ResetButton.isEnabled=false
         
         //Load Question 1
-        loadQuestion(1)
+        //loadQuestion(1)
+        
         
         
         //Set Timer
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(model.tickClock), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(tickClock), userInfo: nil, repeats: true)
         
         
         //Set button colors
@@ -320,7 +320,7 @@ class QuizViewController: UIViewController {
         TextD.layer.borderColor=UIColor.gray.cgColor
         
         
-        
+        update()
         
     }
     
@@ -362,6 +362,18 @@ class QuizViewController: UIViewController {
             ResetButton.alpha=100
             ResetButton.isEnabled=true
         }
+        print("updating scores")
+        
+        updateLabel(P1Answer, text: model.getAns(1))
+        updateLabel(P2Answer, text: model.getAns(2))
+        updateLabel(P3Answer, text: model.getAns(3))
+        updateLabel(P4Answer, text: model.getAns(4))
+        updateLabel(P1Score, text: model.getScore(1))
+        updateLabel(P2Score, text: model.getScore(2))
+        updateLabel(P3Score, text: model.getScore(3))
+        updateLabel(P4Score, text: model.getScore(4))
+        
+        updateLabel(QuestionNumberLabel, text: "Question: "+String(model.questionNumber + 1)+"/"+String(model.questions.count))
         
         
         
@@ -411,7 +423,7 @@ class QuizViewController: UIViewController {
     
     func click(_ buttonLetter : String) {
         if (buttonLetter == model.selectedAnswer) {
-            submit()
+            model.submit()
         } else {
             selectAns(buttonLetter)
         }
@@ -442,7 +454,7 @@ class QuizViewController: UIViewController {
         
         if motion == .motionShake {
             print("shaked")
-            submit()
+            model.submit()
         }
         
     }
@@ -462,7 +474,7 @@ class QuizViewController: UIViewController {
             //print("pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
             if userAcceleration.z < -1.2 {
                 print("pushed")
-                submit()
+                model.submit()
             } else if (attitude.pitch < 0.1) {
                 if model.selectedAnswer == "C" { selectAns("A") }
                 if model.selectedAnswer == "D" { selectAns("B") }

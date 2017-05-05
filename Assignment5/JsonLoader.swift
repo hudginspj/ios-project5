@@ -12,9 +12,9 @@ import WebKit
 
 class JsonLoader {
     
-    static func getJSONData(_ completionHandler: @escaping (([Question])-> Void)) {
+    static func getJSONData(_ urlString : String,  completionHandler: @escaping (([Question])-> Void)) {
         
-        let urlString = "http://people.vcu.edu/~ebulut/jsonFiles/quiz1.json"
+        //let urlString = "http://people.vcu.edu/~ebulut/jsonFiles/quiz1.json"
         let url = URL(string: urlString)
         
         let session = URLSession.shared
