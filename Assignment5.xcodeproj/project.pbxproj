@@ -23,6 +23,7 @@
 		D0797C5A1EB6A876004305AF /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C541EB6A876004305AF /* red.png */; };
 		D0797C5B1EB6A876004305AF /* single.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C551EB6A876004305AF /* single.png */; };
 		D0797C5C1EB6A876004305AF /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = D0797C561EB6A876004305AF /* yellow.png */; };
+		E57F806B1EBD1CF200C0F817 /* README in Resources */ = {isa = PBXBuildFile; fileRef = E57F806A1EBD1CF200C0F817 /* README */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		D0797C541EB6A876004305AF /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red.png; path = "image resources/red.png"; sourceTree = "<group>"; };
 		D0797C551EB6A876004305AF /* single.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = single.png; path = "image resources/single.png"; sourceTree = "<group>"; };
 		D0797C561EB6A876004305AF /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yellow.png; path = "image resources/yellow.png"; sourceTree = "<group>"; };
+		E57F806A1EBD1CF200C0F817 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				7C35F3711EA32EEB007C6306 /* LaunchScreen.storyboard */,
 				7C35F3741EA32EEB007C6306 /* Info.plist */,
 				7C35F37A1EA32F33007C6306 /* JsonLoader.swift */,
+				E57F806A1EBD1CF200C0F817 /* README */,
 			);
 			path = Assignment5;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C35F3731EA32EEB007C6306 /* LaunchScreen.storyboard in Resources */,
+				E57F806B1EBD1CF200C0F817 /* README in Resources */,
 				D0797C5C1EB6A876004305AF /* yellow.png in Resources */,
 				7C35F3701EA32EEB007C6306 /* Assets.xcassets in Resources */,
 				D0797C581EB6A876004305AF /* green.png in Resources */,

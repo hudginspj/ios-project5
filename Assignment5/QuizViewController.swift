@@ -304,15 +304,7 @@ class QuizViewController: UIViewController {
         
     }
     
-    func updateDeviceLocation() {
-        if let h = locationManager.heading {
-            //print(h.magneticHeading)
-            model.updateHeading(h.magneticHeading)
-        } else {
-            print("Heading failed")
-        }
-    }
-    
+
     func updateDeviceMotion(){
         if let data = self.motionManager.deviceMotion {
             
@@ -344,6 +336,16 @@ class QuizViewController: UIViewController {
         }
         
     }
+    
+    func updateDeviceLocation() {
+        if let h = locationManager.heading {
+            //print(h.magneticHeading)
+            model.updateHeading(h.magneticHeading)
+        } else {
+            print("Heading failed")
+        }
+    }
+    
     
     
     

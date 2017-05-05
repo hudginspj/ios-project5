@@ -1,0 +1,7 @@
+Bonus item 1 is implemented, usind CoreLocation Heading
+
+We were unable to test on multiple devices, so if there is a bug with it, our logical structure can be seen in the bottom section of Model.swift and QuizViewController.swift
+
+Communication is reliable between two simulators, but once again we were unable to test on two devices.
+
+
