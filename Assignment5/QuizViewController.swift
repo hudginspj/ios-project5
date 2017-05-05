@@ -405,6 +405,15 @@ class QuizViewController: UIViewController {
     
     ///////////Core Motion
     
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+        
+        if motion == .motionShake {
+            print("shaked")
+            submit()
+        }
+        
+    }
+    
     func updateDeviceMotion(){
         
         if let data = self.motionManager.deviceMotion {
@@ -412,13 +421,16 @@ class QuizViewController: UIViewController {
             // orientation of body relat    ive to a reference frame
             let attitude = data.attitude
             
-            //let userAcceleration = data.userAcceleration
+            let userAcceleration = data.userAcceleration
             
             //let gravity = data.gravity
             //let rotation = data.rotationRate
             
             //print("pitch: \(attitude.pitch), roll: \(attitude.roll), yaw: \(attitude.yaw)")
-            if (attitude.pitch < 0.1) {
+            if userAcceleration.z < -1.2 {
+                print("pushed")
+                submit()
+            } else if (attitude.pitch < 0.1) {
                 AnswerA(self)
             } else if (attitude.pitch > 0.6) {
                 AnswerB(self)
